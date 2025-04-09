@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="View\ActivePlaceWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ShopItemWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ShopMainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SizeHelpWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\ActivePlaceWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ShopItemWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ShopMainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SizeHelpWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
