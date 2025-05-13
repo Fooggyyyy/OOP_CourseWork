@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Rix"
-           FontFamily="{StaticResource Macondo}"
+           FontFamily="Segoe UI"
            Grid.Column="0"
            Grid.Row="0"
            HorizontalAlignment="Left"

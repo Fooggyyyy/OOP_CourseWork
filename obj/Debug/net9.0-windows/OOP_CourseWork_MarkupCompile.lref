@@ -1,5 +1,7 @@
 ﻿
-FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\App.xaml;;
+
+FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\ActivePlaceWindow.xaml;;
+FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\AdminWindow.xaml;;
 FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\BonusWindow.xaml;;
 FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\CartWindow.xaml;;
 FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\ContactWindow.xaml;;
@@ -10,9 +12,8 @@ FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\LastViewWindow.xa
 FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\MainWindow.xaml;;
 FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\OrdersWindow.xaml;;
 FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\RegisterWindow.xaml;;
-FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\SignWindow.xaml;;
-FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\ActivePlaceWindow.xaml;;
 FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\ShopItemWindow.xaml;;
 FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\ShopMainWindow.xaml;;
+FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\SignWindow.xaml;;
 FC:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\View\SizeHelpWindow.xaml;;
 

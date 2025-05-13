@@ -14,41 +14,44 @@ using System.ComponentModel.DataAnnotations.Schema;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Diagnostics.Metrics;
 using OOP_CourseWork.Model;
+using OOP_CourseWork.DataBase.ModelCreating;
+using Microsoft.Extensions.Options;
+using System.Configuration;
 
 namespace OOP_CourseWork.DataBase
 {
-    public class DataBase : DbContext
+    public class AppContext : DbContext
     {
         private string _connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=OOP_CourseWork;Trusted_Connection=True;";
 
+        public DbSet<Favorite> Favorites => Set<Favorite>();
+        public DbSet<History> Historys => Set<History>();
+        public DbSet<LastView> LastViews => Set<LastView>();
+        public DbSet<Cart> Carts => Set<Cart>();
         public DbSet<Comment> Comments => Set<Comment>();
         public DbSet<Item> Items => Set<Item>();
         public DbSet<Order> Orders => Set<Order>();
         public DbSet<User> Users => Set<User>();
 
-        public DataBase(string _connectionstring) 
+        public AppContext(DbContextOptions<AppContext> options) : base(options)
         {
-            Database.EnsureCreated(); 
-            this._connectionString = _connectionstring;
+            Database.EnsureCreated();
         }
 
-        public override void Dispose() //Для утилизации файлового потока для логирования
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.Dispose();
+            modelBuilder.ApplyConfiguration(new CartOnModelCreating());
+            modelBuilder.ApplyConfiguration(new CommentOnModelCreating());
+            modelBuilder.ApplyConfiguration(new FavoriteOnModelCreating());
+            modelBuilder.ApplyConfiguration(new HistoryOnModelCreating());
+            modelBuilder.ApplyConfiguration(new ItemOnModelCreating());
+            modelBuilder.ApplyConfiguration(new LastViewOnModelCreating());
+            modelBuilder.ApplyConfiguration(new OrderOnModelCreating());
+            modelBuilder.ApplyConfiguration(new UserOnModelCreating());
+            modelBuilder.ApplyConfiguration(new ContactOnModelCreating());
         }
 
     }
 }
 
-
-//protected override void OnModelCreating(ModelBuilder modelBuilder)
-//{
-//    // использование Fluent API
-//    base.OnModelCreating(modelBuilder);
-//    modelBuilder.Entity<Country>();//Включаем Country В наше БД
-//                                   //modelBuilder.Ignore<Country>(); Это если надо наоборот проигнорировать, что бы в БД не добавлялось
-//    modelBuilder.Entity<User>().Ignore(u => u.Position); //Position не будет в БД
-//    modelBuilder.Entity<User>().Property(u => u.Id).HasField("_id");
-//    modelBuilder.Entity<User>().Property(u => u.Name).HasField("_name");
-//    modelBuilder.Entity<User>().Property(u => u.Age).HasField("_age");
-//}

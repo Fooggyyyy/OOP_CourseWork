@@ -9,78 +9,38 @@ using System.Collections.ObjectModel;
 
 namespace OOP_CourseWork.Model
 {
-    public class Order : INotifyPropertyChanged
+    public class Order 
     {
-        private int Id;
-        private User? User;
-        private List<Item> Items;
-        private bool ActiveBonus;
-        private int Price;
-        public int id
+        public int Id { get; set; }
+        public User? User { get; set; }
+        public int UserId { get; set; }
+        public Item Item { get; set; }
+        public int ItemId { get; set; }
+        public bool ActiveBonus { get; set; }
+        public int Price { get; set; }
+
+        public Order(int id, User? user, int userId, Item item, int itemId, bool activeBonus, int price)
         {
-            get
-            {
-                return Id;
-            }
-            set
-            {
-                Id = value;
-                OnPropertyChanged("id");
-            }
-        }
-        public User? user
-        {
-            get
-            {
-                return User;
-            }
-            set
-            {
-                User = value;
-                OnPropertyChanged("user");
-            }
+            Id = id;
+            User = user;
+            UserId = userId;
+            Item = item;
+            ItemId = itemId;
+            ActiveBonus = activeBonus;
+            Price = price;
         }
 
-        public bool activeBonus
+        public Order(int id, int userId, int itemId, bool activeBonus, int price)
         {
-            get
-            {
-                return ActiveBonus;
-            }
-            set
-            {
-                ActiveBonus = value;
-                OnPropertyChanged("activeBonus");
-            }
+            Id = id;
+            UserId = userId;
+            ItemId = itemId;
+            ActiveBonus = activeBonus;
+            Price = price;
         }
 
-        public int price
+        public Order()
         {
-            get
-            {
-                return Price;
-            }
-            set
-            {
-                Price = value;
-                OnPropertyChanged("price");
-            }
-        }
-
-        public Order(int Id, User? User, List<Item> Items, bool ActiveBonus, int Price)
-        {
-            this.Id = Id;
-            this.User = User;
-            this.Items = Items;
-            this.ActiveBonus = ActiveBonus;
-            this.Price = Price;
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

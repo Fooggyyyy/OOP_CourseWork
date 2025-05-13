@@ -24,15 +24,15 @@
         </Grid.ColumnDefinitions>
         <Image Source="C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\Recources\Photo\MainPhoto1.png" Grid.Column="1" Grid.Row="1" />
         <Image Source="C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\Recources\Photo\MainPhoto2.png" Grid.Column="3" Grid.Row="1"></Image>
-        <TextBlock Text="Rix"
-               FontFamily="{StaticResource Macondo}"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top"
-               >
-            <TextBlock.LayoutTransform>
-                <ScaleTransform ScaleX="4" ScaleY="4" />
-            </TextBlock.LayoutTransform>
-        </TextBlock>
+            <TextBlock Text="Rix"
+                   FontFamily="Segoe UI"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   >
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="4" ScaleY="4" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
         <Label Content="Sign In/Register"  MouseLeftButtonUp="NavigateToSign" FontFamily="Inter" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock Text="Помощь"
@@ -136,7 +136,7 @@
  HorizontalAlignment="Center"
  VerticalAlignment="Center"
  Margin="5,0"
- PreviewMouseDown ="ShopBurgerMenuOpen">
+ PreviewMouseDown ="NavigateToShopMainWindow">
                 <TextBlock.LayoutTransform>
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
@@ -145,15 +145,15 @@
            IsOpen="False" StaysOpen="True"  HorizontalAlignment="Right" Placement="Right" HorizontalOffset="-200" VerticalOffset="20">
                 <ListBox x:Name="listBox" Width="200"  Grid.Row="0" Grid.Column="0">
                     <ListBoxItem Content="Закрыть" PreviewMouseDown ="CloseBurgerMenu"/>
-                    <ListBoxItem Content="Все"/>
-                    <ListBoxItem Content="Новое"/>
-                    <ListBoxItem Content= "Футболки"/>
-                    <ListBoxItem Content= "Толстовки"/>
-                    <ListBoxItem Content= "Джинсы"/>
-                    <ListBoxItem Content= "Рубашки"/>
-                    <ListBoxItem Content= "Куртки"/>
-                    <ListBoxItem Content= "Брюки"/>
-                    <ListBoxItem Content= "Акссесуары"/>
+                    <ListBoxItem Content="Все" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content="Новое" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Футболки" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Толстовки" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Джинсы" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Рубашки" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Куртки" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Брюки" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Акссесуары" PreviewMouseDown="NavigateToShopMainWindow"/>
                 </ListBox>
             </Popup>
         </StackPanel>

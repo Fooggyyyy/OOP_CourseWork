@@ -3,10 +3,182 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:OOP_CourseWork.View"
+        xmlns:local="clr-namespace:OOP_CourseWork"
+        xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel"
         mc:Ignorable="d"
-        Title="ShopItemWindow" Height="450" Width="800">
+        Closing="Window_Closing"
+        Title="CartWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="10*"  />
+            <RowDefinition  Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Rix"
+           FontFamily="Segoe UI"
+           Grid.Column="0"
+           Grid.Row="0"
+           HorizontalAlignment="Left"
+           VerticalAlignment="Top"
+           MouseLeftButtonUp="NavigateToMain">
+            <TextBlock.LayoutTransform>
+                <ScaleTransform ScaleX="4" ScaleY="4" />
+            </TextBlock.LayoutTransform>
+        </TextBlock>
+
+        <Image Source="{Binding SelectedItem.PhotoPath}" Grid.Row="1" Grid.Column="3" Stretch="Uniform" Margin="10" />
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+            <TextBlock Text="{Binding SelectedItem.Name}" FontWeight="Bold" FontSize="20" Margin="0,0,0,10" />
+            <TextBlock Text="Описание:" FontWeight="SemiBold" />
+            <TextBlock Text="{Binding SelectedItem.Description}" TextWrapping="Wrap" Margin="0,0,0,10"/>
+            <TextBlock Text="Цена:" FontWeight="SemiBold" />
+            <TextBlock Text="{Binding SelectedItem.Price}" />
+        </StackPanel>
+
+
+        <!-- Кнопка Добавить в корзину -->
+        <Button Content="Добавить в корзину"
+                Grid.Row="1"
+                Grid.ColumnSpan="5"
+                HorizontalAlignment="Center"
+                Height="40"
+                Width="180"
+                Margin="0,10,0,0"
+                Padding="10,5"
+                Command="{Binding AddToCartCommand}" />
+
+        <Label Content="Sign In/Register"  MouseLeftButtonUp="NavigateToSign" FontFamily="Inter" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Помощь"
+               FontFamily="Almarai"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="20,0"
+               MouseLeftButtonUp="NavigateToHelp"
+>
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+
+            <TextBlock Text="Контакты"
+               FontFamily="Almarai"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="20,0"
+               MouseLeftButtonUp="NavigateToContact">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+
+            <TextBlock Text="Активные точки"
+               FontFamily="Almarai"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="20,0"
+               MouseLeftButtonUp="NavigateToActivePlace">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBlock Text="Orders"
+  FontFamily="Almarai"
+  HorizontalAlignment="Center"
+  VerticalAlignment="Center"
+  Margin="5,0"
+  MouseLeftButtonUp="NavigateToOrders">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="Last View"
+  FontFamily="Almarai"
+  HorizontalAlignment="Center"
+  VerticalAlignment="Center"
+  Margin="5,0"
+  MouseLeftButtonUp="NavigateToLastView">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="History"
+  FontFamily="Almarai"
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Margin="5,0"
+MouseLeftButtonUp="NavigateToHistory">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="Bonus"
+ FontFamily="Almarai"
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Margin="5,0"
+MouseLeftButtonUp="NavigateToBonus">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="Favorite"
+  FontFamily="Almarai"
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Margin="5,0"
+MouseLeftButtonUp="NavigateToFavorite">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="Cart"
+  FontFamily="Almarai"
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Margin="5,0"
+MouseLeftButtonUp="NavigateToCart">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="Shop"
+                      x:Name="shop"
+ FontFamily="Almarai"
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Margin="5,0"
+PreviewMouseDown ="ShopBurgerMenuOpen">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <Popup x:Name="popup" PlacementTarget="{Binding ElementName=textBox}"
+          IsOpen="False" StaysOpen="True"  HorizontalAlignment="Right" Placement="Right" HorizontalOffset="-200" VerticalOffset="20">
+                <ListBox x:Name="listBox" Width="200"  Grid.Row="0" Grid.Column="0">
+                    <ListBoxItem Content="Закрыть" PreviewMouseDown ="CloseBurgerMenu"/>
+                    <ListBoxItem Content="Все"/>
+                    <ListBoxItem Content="Новое"/>
+                    <ListBoxItem Content= "Футболки"/>
+                    <ListBoxItem Content= "Толстовки"/>
+                    <ListBoxItem Content= "Джинсы"/>
+                    <ListBoxItem Content= "Рубашки"/>
+                    <ListBoxItem Content= "Куртки"/>
+                    <ListBoxItem Content= "Брюки"/>
+                    <ListBoxItem Content= "Акссесуары"/>
+                </ListBox>
+            </Popup>
+        </StackPanel>
     </Grid>
 </Window>

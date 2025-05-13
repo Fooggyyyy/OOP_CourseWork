@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OOP_CourseWork.DataBase.Pattern.UnitOfWork;
+using OOP_CourseWork.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,35 +21,47 @@ namespace OOP_CourseWork
     /// </summary>
     public partial class RegisterWindow : Window
     {
-        public RegisterWindow()
+        private readonly IUnitOfWork _unitOfWork;
+
+        public RegisterWindow(IUnitOfWork unitOfWork)
         {
             InitializeComponent();
+            _unitOfWork = unitOfWork;
+            DataContext = new RegisterViewModel(unitOfWork);
         }
 
         private void NavigateToHelp(object sender, MouseButtonEventArgs e)
         {
-            var newWindow = new HelpWindow();
+            var newWindow = new HelpWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }
 
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is RegisterViewModel viewModel)
+            {
+                viewModel.Password = ((PasswordBox)sender).Password;
+            }
+        }
+
         private void NavigateToMain(object sender, MouseButtonEventArgs e)
         {
-            var newWindow = new MainWindow();
+            var newWindow = new MainWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }
 
         private void NavigateToContact(object sender, MouseButtonEventArgs e)
         {
-            var newWindow = new ContactWindow();
+            var newWindow = new ContactWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }
 
         private void NavigateToActivePlace(object sender, MouseButtonEventArgs e)
         {
-            var newWindow = new ActivePlaceWindow();
+            var newWindow = new ActivePlaceWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }
@@ -58,49 +72,49 @@ namespace OOP_CourseWork
 
         private void NavigateToOrders(object sender, MouseButtonEventArgs e)
         {
-            var newWindow = new OrdersWindow();
+            var newWindow = new OrdersWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }
 
         private void NavigateToLastView(object sender, MouseButtonEventArgs e)
         {
-            var newWindow = new LastViewWindow();
+            var newWindow = new LastViewWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }
 
         private void NavigateToHistory(object sender, MouseButtonEventArgs e)
         {
-            var newWindow = new HistoryWindow();
+            var newWindow = new HistoryWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }
 
         private void NavigateToBonus(object sender, MouseButtonEventArgs e)
         {
-            var newWindow = new BonusWindow();
+            var newWindow = new BonusWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }
 
         private void NavigateToSign(object sender, MouseButtonEventArgs e)
         {
-            var newWindow = new SignWindow();
+            var newWindow = new SignWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }
 
         private void NavigateToFavorite(object sender, MouseButtonEventArgs e)
         {
-            var newWindow = new FavoriteWindow();
+            var newWindow = new FavoriteWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }
 
         private void NavigateToCart(object sender, MouseButtonEventArgs e)
         {
-            var newWindow = new CartWindow();
+            var newWindow = new CartWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }

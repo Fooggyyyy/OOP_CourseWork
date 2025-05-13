@@ -9,48 +9,35 @@ using System.Collections.ObjectModel;
 
 namespace OOP_CourseWork.Model
 {
-    public class Comment : INotifyPropertyChanged
+    public class Comment 
     {
-        private User? User;
-        private string? Description;
+        public int Id { get; set; }
+        public User User { get; set; }
+        public int UserId { get; set; }  
+        public Item Item { get; set; }
+        public int ItemId { get; set; }
+        public string Description { get; set; }
 
-        public User? user
+        public Comment(int id, User user, int userId, Item item, int itemId, string description)
         {
-            get
-            {
-                return User;
-            }
-            set
-            {
-                User = value;
-                OnPropertyChanged("user");
-            }
+            Id = id;
+            User = user;
+            UserId = userId;
+            Item = item;
+            ItemId = itemId;
+            Description = description;
         }
 
-        public string? description
+        public Comment(int id, int userId, int itemId, string description)
         {
-            get
-            {
-                return Description;
-            }
-            set
-            {
-                Description = value;
-                OnPropertyChanged("description");
-            }
+            Id = id;
+            UserId = userId;
+            ItemId = itemId;
+            Description = description;
         }
 
-        public Comment(User? User, string? Description)
+        public Comment()
         {
-            this.User = User;
-            this.Description = Description;
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

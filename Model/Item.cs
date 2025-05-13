@@ -24,125 +24,58 @@ namespace OOP_CourseWork.Model
         Blue = 2,
         Red = 3,
         Gray = 4,
-        Pink = 5
+        Pink = 5,
+        Black = 6
     }
-    public class Item : INotifyPropertyChanged
+    public enum TypeWear
     {
-        private int Id;
-        private string? Name;
-        private int Price;
-        private Size Size;
-        private Color Color;
-        private SortedSet<string> Description;
-        private double Rating;
-        private SortedSet<Comment> Comments;
-
-        public int id
+        Jeens = 0,
+        Tshirt = 1,
+        Hoodie = 2,
+        Jacket = 3,
+        Shirt = 4,
+        Pants = 5,
+        Acces = 6
+    }
+    public class Item 
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Price { get; set; }
+        public Size Size { get; set; }
+        public Color Color { get; set; }
+        public TypeWear Type { get; set; }
+        public string Description  { get; set; }
+        public double Rating { get; set; }
+        public string PhotoPath { get; set; }
+        public Item(int id, string name, int price, Size size, Color color, string description, double rating, Comment comment, int commentId, TypeWear Type, string photoPath)
         {
-            get
-            {
-                return Id;
-            }
-            set
-            {
-                Id = value;
-                OnPropertyChanged("id");
-            }
+            Id = id;
+            Name = name;
+            Price = price;
+            Size = size;
+            Color = color;
+            Description = description;
+            Rating = rating;
+            this.Type = Type;
+            PhotoPath = photoPath;
         }
 
-        public Color color
+        public Item(int id, string name, int price, Size size, Color color, string description, double rating, TypeWear Type, string PhotoPath)
         {
-            get
-            {
-                return Color;
-            }
-            set
-            {
-                Color = value;
-                OnPropertyChanged("color");
-            }
+            Id = id;
+            Name = name;
+            Price = price;
+            Size = size;
+            Color = color;
+            Description = description;
+            Rating = rating;
+            this.Type = Type;
+            this.PhotoPath = PhotoPath;
         }
 
-        public string? name
+        public Item()
         {
-            get
-            {
-                return Name;
-            }
-            set
-            {
-                Name = value;
-                OnPropertyChanged("name");
-            }
-        }
-
-        public int price
-        {
-            get
-            {
-                return Price;
-            }
-            set
-            {
-                Price = value;
-                OnPropertyChanged("price");
-            }
-        }
-
-        public Size size
-        {
-            get
-            {
-                return Size;
-            }
-            set
-            {
-                Size = value;
-                OnPropertyChanged("size");
-            }
-        }
-
-        public double rating
-        {
-            get
-            {
-                return Rating;
-            }
-            set
-            {
-                Rating = value;
-                OnPropertyChanged("rating");
-            }
-        }
-
-        public Item(int Id, string? Name, int Price, Size Size, Color Color, SortedSet<string> Description, double Rating, SortedSet<Comment> Comments)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.Price = Price;
-            this.Size = Size;
-            this.Description = Description;
-            this.Rating = Rating;
-            this.Comments = Comments;
-            this.Color = Color;
-        }
-
-        public Item(int Id, string? Name, int Price, Size Size, Color Color, SortedSet<string> Description)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.Price = Price;
-            this.Size = Size;
-            this.Description = Description;
-            this.Color = Color;
-            Comments = new SortedSet<Comment>();
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

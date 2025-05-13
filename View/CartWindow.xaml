@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_CourseWork"
+        xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel"
         mc:Ignorable="d"
         Closing="Window_Closing"
         Title="CartWindow" Height="450" Width="800">
@@ -21,7 +22,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <TextBlock Text="Rix"
-           FontFamily="{StaticResource Macondo}"
+           FontFamily="Segoe UI"
            Grid.Column="0"
            Grid.Row="0"
            HorizontalAlignment="Left"
@@ -44,6 +45,26 @@
                 <ScaleTransform ScaleX="2" ScaleY="2" />
             </TextBlock.LayoutTransform>
         </TextBlock>
+
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding CartItems}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{Binding PhotoPath}" Height="150" Width="120" Stretch="UniformToFill" Margin="30"/>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Price}" />
+                                <TextBlock Text="{Binding Size}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+
+
 
 
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">

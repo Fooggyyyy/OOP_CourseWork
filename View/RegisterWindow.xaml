@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_CourseWork"
+        xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel"
         mc:Ignorable="d"
         Title="ContactWindow" Height="450" Width="800"
         Closing="Window_Closing">
@@ -21,7 +22,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <TextBlock Text="Rix"
-           FontFamily="{StaticResource Macondo}"
+           FontFamily="Segoe UI"
            Grid.Column="0"
            Grid.Row="0"
            HorizontalAlignment="Left"
@@ -35,36 +36,31 @@
         <Label Content="Регистрация." FontFamily="Inter" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
 
         <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
-         Text="Имя"
+         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
          HorizontalAlignment="Stretch"
          VerticalAlignment="Top"
          MaxWidth="200"
          Margin="40" />
 
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
-  Text="Пароль"
-  HorizontalAlignment="Stretch"
-  VerticalAlignment="Top"
-  MaxWidth="200"
-  Margin="80" />
 
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
-Text="Пароль"
-HorizontalAlignment="Stretch"
-VerticalAlignment="Top"
-MaxWidth="200"
-Margin="80" />
-        
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
-Text="Пароль еще раз"
-HorizontalAlignment="Stretch"
-VerticalAlignment="Top"
-MaxWidth="200"
-Margin="120" />
+        <PasswordBox x:Name="PasswordBox"
+             Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Top"
+             MaxWidth="200"
+             Margin="80"
+             PasswordChanged="PasswordBox_PasswordChanged"/>
 
 
-        <Button Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
-VerticalAlignment="Bottom" MinHeight="30" MaxWidth="250" Margin="100">Регистрация</Button>
+        <Button Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Bottom"
+        MinHeight="30"
+        MaxWidth="250"
+        Margin="100"
+        Content="Регистрация"
+        Command="{Binding RegisterCommand}" />
+
 
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock Text="Помощь"

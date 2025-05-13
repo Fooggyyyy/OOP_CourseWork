@@ -9,93 +9,33 @@ using System.Collections.ObjectModel;
 
 namespace OOP_CourseWork.Model
 {
-    public class User : INotifyPropertyChanged
+    public class User 
     {
-        private int Id;
-        private string? Name;
-        private bool IsAdmin;
-        private string? Password;
-        private int Bonus;
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public bool IsAdmin { get; set; }
+        public string? Password { get; set; }
+        public int Bonus { get; set; }
 
-        public int id
+        public User()
         {
-            get
-            {
-                return Id;
-            }
-            set
-            {
-                Id = value;
-                OnPropertyChanged("id");
-            }
         }
 
-        public string? name
+        public User(string? name, string? password)
         {
-            get
-            {
-                return Name;
-            }
-            set
-            {
-                Name = value;
-                OnPropertyChanged("name");
-            }
+            Name = name;
+            Password = password;
+            Bonus = 0;
+            IsAdmin = false;
         }
 
-        public bool isadmin
+        public User(int id, string? name, string? password, bool isAdmin)
         {
-            get
-            {
-                return IsAdmin;
-            }
-            set
-            {
-                IsAdmin = value;
-                OnPropertyChanged("isadmin");
-            }
-        }
-
-        public string? password
-        {
-            get
-            {
-                return Password;
-            }
-            set
-            {
-                Password = value;
-                OnPropertyChanged("password");
-            }
-        }
-
-        public int bonus
-        {
-            get
-            {
-                return Bonus;
-            }
-            set
-            {
-                Bonus = value;
-                OnPropertyChanged("bonus");
-            }
-        }
-
-        public User(int Id, string? Name, bool IsAdmin, string? Password, int Bonus)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.IsAdmin = IsAdmin;
-            this.Password = Password;
-            this.Bonus = Bonus;
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            Id = id;
+            Name = name;
+            IsAdmin = false;
+            Password = password;
+            Bonus = 0;
         }
     }
 }
