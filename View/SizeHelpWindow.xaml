@@ -3,10 +3,220 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:OOP_CourseWork.View"
+        xmlns:properties="clr-namespace:System;assembly=mscorlib"
+        Icon="C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\Recources\tiktok_logo_icon_186896.ico"
+        xmlns:local="clr-namespace:OOP_CourseWork"
         mc:Ignorable="d"
-        Title="SizeHelpWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Closing="Window_Closing">
+
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="10*"  />
+            <RowDefinition  Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Rix"
+                   FontFamily="Segoe UI"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   >
+            <TextBlock.LayoutTransform>
+                <ScaleTransform ScaleX="4" ScaleY="4" />
+            </TextBlock.LayoutTransform>
+        </TextBlock>
+        <Label Content="Sign In/Register"  MouseLeftButtonUp="NavigateToSign" FontFamily="Inter" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+
+        <TextBlock Text="Рост:"
+                   Grid.Row="1" Grid.Column="2"
+                   FontWeight="Bold"
+                   FontSize="14"
+                   HorizontalAlignment="Center" Margin="0,16,0,301" Width="56" />
+        <TextBlock Text="Масса:"
+                   Grid.Row="1" Grid.Column="2"
+                   FontWeight="Bold"
+                   FontSize="14"
+                   HorizontalAlignment="Center" Margin="0,61,0,256" Width="56" />
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+         Text="{Binding Height, UpdateSourceTrigger=PropertyChanged}"
+         HorizontalAlignment="Stretch"
+         VerticalAlignment="Top"
+         MaxWidth="200"
+         Margin="40" />
+
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+        Text="{Binding Weight, UpdateSourceTrigger=PropertyChanged}"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Top"
+        MaxWidth="200"
+        Margin="80" />
+
+
+        <Button Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
+        VerticalAlignment="Bottom" MinHeight="30" MaxWidth="250" Margin="100" Command="{Binding RecommendSizeCommand}">Расчитать</Button>
+
+        <TextBlock Text="Рекомендуемый размер:"
+                   Grid.Row="1" Grid.Column="1"
+                   FontWeight="Bold"
+                   FontSize="14"
+                   HorizontalAlignment="Left" Margin="0,0,0,33" Grid.RowSpan="2" />
+        <TextBlock Text="{Binding RecommendedSize}"
+                   Margin="40, 40, 40, 40"
+                   Grid.Row="1" Grid.Column="1"
+                   FontSize="16"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Center" />
+
+
+
+
+
+
+
+
+
+
+
+
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="{DynamicResource Help}"
+               FontFamily="Almarai"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="20,0"
+               MouseLeftButtonUp="NavigateToHelp"
+>
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+
+
+
+
+
+
+
+            <TextBlock Text="{DynamicResource Contacts}"
+               FontFamily="Almarai"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="20,0"
+               MouseLeftButtonUp="NavigateToContact">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+
+            <TextBlock Text="{DynamicResource ActiveSpots}"
+               FontFamily="Almarai"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="20,0"
+               MouseLeftButtonUp="NavigateToActivePlace">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBlock Text="{DynamicResource Orders}"
+  FontFamily="Almarai"
+  HorizontalAlignment="Center"
+  VerticalAlignment="Center"
+  Margin="5,0"
+  MouseLeftButtonUp="NavigateToOrders">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="{DynamicResource LastViewed}"
+  FontFamily="Almarai"
+  HorizontalAlignment="Center"
+  VerticalAlignment="Center"
+  Margin="5,0"
+  MouseLeftButtonUp="NavigateToLastView">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="{DynamicResource History}"
+  FontFamily="Almarai"
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Margin="5,0"
+MouseLeftButtonUp="NavigateToHistory">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="{DynamicResource Bonus}"
+ FontFamily="Almarai"
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Margin="5,0"
+MouseLeftButtonUp="NavigateToBonus">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="{DynamicResource Favorites}"
+  FontFamily="Almarai"
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Margin="5,0"
+MouseLeftButtonUp="NavigateToFavorite">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="{DynamicResource AddToCart}"
+  FontFamily="Almarai"
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+Margin="5,0"
+MouseLeftButtonUp="NavigateToCart">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <TextBlock Text="{DynamicResource Store}"
+                       x:Name="shop"
+  FontFamily="Almarai"
+ HorizontalAlignment="Center"
+ VerticalAlignment="Center"
+ Margin="5,0"
+ PreviewMouseDown ="NavigateToShopMainWindow">
+                <TextBlock.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+            <Popup x:Name="popup" PlacementTarget="{Binding ElementName=textBox}"
+           IsOpen="False" StaysOpen="True"  HorizontalAlignment="Right" Placement="Right" HorizontalOffset="-200" VerticalOffset="20">
+                <ListBox x:Name="listBox" Width="200"  Grid.Row="0" Grid.Column="0">
+                    <ListBoxItem Content="Закрыть" PreviewMouseDown ="CloseBurgerMenu"/>
+                    <ListBoxItem Content="Все" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content="Новое" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Футболки" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Толстовки" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Джинсы" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Рубашки" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Куртки" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Брюки" PreviewMouseDown="NavigateToShopMainWindow"/>
+                    <ListBoxItem Content= "Акссесуары" PreviewMouseDown="NavigateToShopMainWindow"/>
+                </ListBox>
+            </Popup>
+        </StackPanel>
+
+
     </Grid>
 </Window>

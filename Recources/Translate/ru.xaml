@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="Help">Помощь</sys:String>
+    <sys:String x:Key="ActiveSpots">Активные места</sys:String>
+    <sys:String x:Key="Contacts">Контакты</sys:String>
+    <sys:String x:Key="Orders">Заказ</sys:String>
+    <sys:String x:Key="LastViewed">Просмотр</sys:String>
+    <sys:String x:Key="History">История</sys:String>
+    <sys:String x:Key="Bonus">Бонус</sys:String>
+    <sys:String x:Key="Favorites">Избранное</sys:String>
+    <sys:String x:Key="Store">Магазин</sys:String>
+    <sys:String x:Key="Size">Размер</sys:String>
+    <sys:String x:Key="Color">Цвет</sys:String>
+    <sys:String x:Key="ClothingType">Тип одежды</sys:String>
+    <sys:String x:Key="MinPrice">Мин цена</sys:String>
+    <sys:String x:Key="MaxPrice">Макс цена</sys:String>
+    <sys:String x:Key="MinRating">Мин рейтинг</sys:String>
+    <sys:String x:Key="Apply">Применить</sys:String>
+    <sys:String x:Key="Login">Вход</sys:String>
+    <sys:String x:Key="NoAccountRegister">Нет аккаунта. зарегистрируйся</sys:String>
+    <sys:String x:Key="Minsk">Минск</sys:String>
+    <sys:String x:Key="Address">Улица бобруйская 25</sys:String>
+    <sys:String x:Key="WorkingHours">Время работы</sys:String>
+    <sys:String x:Key="EverydayHours">Каждый день: 12:00 - 21:00</sys:String>
+    <sys:String x:Key="WriteToUs">Написать нам:</sys:String>
+    <sys:String x:Key="SocialNetworks">Наши социальные сети</sys:String>
+    <sys:String x:Key="Register">Регистрация</sys:String>
+    <sys:String x:Key="AddToCart">Корзина</sys:String>
+    
+</ResourceDictionary>

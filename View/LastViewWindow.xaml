@@ -2,6 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        Icon="C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\Recources\tiktok_logo_icon_186896.ico"
+        xmlns:properties="clr-namespace:System;assembly=mscorlib"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_CourseWork"
         mc:Ignorable="d"
@@ -32,22 +34,26 @@
             </TextBlock.LayoutTransform>
         </TextBlock>
         <Label Content="Sign In/Register" FontFamily="Inter" MouseLeftButtonUp="NavigateToSign" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
-        <TextBlock Text="История Просмотров"
-   FontFamily="Inter"
-   Grid.Column="1"
-   Grid.Row="1"
-   Grid.ColumnSpan="3"
-   HorizontalAlignment="Center"
-   VerticalAlignment="Top"
-   MouseLeftButtonUp="NavigateToMain">
-            <TextBlock.LayoutTransform>
-                <ScaleTransform ScaleX="3" ScaleY="3" />
-            </TextBlock.LayoutTransform>
-        </TextBlock>
 
-
-        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="Помощь"
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding LastViewItems}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{Binding PhotoPath}" Height="150" Width="120" Stretch="UniformToFill" Margin="30"/>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Price}" />
+                                <TextBlock Text="{Binding Size}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="{DynamicResource Help}"
                FontFamily="Almarai"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
@@ -59,7 +65,7 @@
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
-            <TextBlock Text="Контакты"
+            <TextBlock Text="{DynamicResource Contacts}"
                FontFamily="Almarai"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
@@ -70,7 +76,7 @@
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
-            <TextBlock Text="Активные точки"
+            <TextBlock Text="{DynamicResource ActiveSpots}"
                FontFamily="Almarai"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
@@ -82,7 +88,7 @@
             </TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
-            <TextBlock Text="Orders"
+            <TextBlock Text="{DynamicResource Orders}"
   FontFamily="Almarai"
   HorizontalAlignment="Center"
   VerticalAlignment="Center"
@@ -92,7 +98,7 @@
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Last View"
+            <TextBlock Text="{DynamicResource LastViewed}"
   FontFamily="Almarai"
   HorizontalAlignment="Center"
   VerticalAlignment="Center"
@@ -102,7 +108,7 @@
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="History"
+            <TextBlock Text="{DynamicResource History}"
   FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -112,7 +118,7 @@ MouseLeftButtonUp="NavigateToHistory">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Bonus"
+            <TextBlock Text="{DynamicResource Bonus}"
  FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -122,7 +128,7 @@ MouseLeftButtonUp="NavigateToBonus">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Favorite"
+            <TextBlock Text="{DynamicResource Favorites}"
   FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -132,7 +138,7 @@ MouseLeftButtonUp="NavigateToFavorite">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Cart"
+            <TextBlock Text="{DynamicResource AddToCart}"
   FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -142,7 +148,7 @@ MouseLeftButtonUp="NavigateToCart">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Shop"
+            <TextBlock Text="{DynamicResource Store}"
                       x:Name="shop"
  FontFamily="Almarai"
 HorizontalAlignment="Center"

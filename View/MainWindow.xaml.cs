@@ -1,4 +1,5 @@
 ﻿using OOP_CourseWork.DataBase.Pattern.UnitOfWork;
+using OOP_CourseWork.Recources.Translate;
 using OOP_CourseWork.View;
 using System.Text;
 using System.Windows;
@@ -21,10 +22,13 @@ namespace OOP_CourseWork
         {
             InitializeComponent();
             _unitOfWork = unitOfWork;
+
+
+
+            this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
         }
         private void NavigateToHelp(object sender, MouseButtonEventArgs e)
         {
-            popup.IsOpen = false;
             var newWindow = new HelpWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
@@ -111,6 +115,12 @@ namespace OOP_CourseWork
             ShopMainWindow shopWindow = new ShopMainWindow(_unitOfWork);
             shopWindow.Show();
             this.Hide();
+        }
+
+        private void OnLanguageChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var lang = (e.AddedItems[0] as ComboBoxItem)?.Tag?.ToString(); // "en" или "ru"
+            LanguageManager.ChangeLanguage(lang);
         }
 
 

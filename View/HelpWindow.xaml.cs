@@ -1,4 +1,5 @@
 ﻿using OOP_CourseWork.DataBase.Pattern.UnitOfWork;
+using OOP_CourseWork.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,15 @@ namespace OOP_CourseWork
         {
             InitializeComponent();
             _unitOfWork = unitOfWork;
-            DataContext = new HelpWindow(unitOfWork);
+
+            this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
+        }
+
+        private void NavigateToSizeHelp(object sender, RoutedEventArgs e)
+        {
+            var newWindow = new SizeHelpWindow(_unitOfWork);
+            newWindow.Show();
+            this.Hide();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

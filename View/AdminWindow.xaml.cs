@@ -29,6 +29,9 @@ namespace OOP_CourseWork.View
             InitializeComponent();
             _unitOfWork = unitOfWork;
             DataContext = new AdminViewModel(unitOfWork);
+
+            
+            this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
         }
 
         private void NavigateToMain(object sender, MouseButtonEventArgs e)

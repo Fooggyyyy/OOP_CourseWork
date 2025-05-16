@@ -32,25 +32,95 @@ namespace OOP_CourseWork.ViewModel
             }
         }
 
+        private string _newCommentText;
+        public string NewCommentText
+        {
+            get => _newCommentText;
+            set
+            {
+                _newCommentText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _newCommentRating = 1; 
+        public int NewCommentRating
+        {
+            get => _newCommentRating;
+            set
+            {
+                if (value < 1) value = 1;
+                if (value > 5) value = 5;
+                _newCommentRating = value;
+                OnPropertyChanged();
+            }
+        }
+        public Action? CloseAction { get; set; }
+
+        public ICommand AddCommentCommand { get; }
+
         public ICommand LoadItemCommand { get; }
         public ICommand LoadCommentsCommand { get; }
         public ICommand AddToCartCommand { get; }
-        public ICommand NavigateToSizeHelpCommand { get; }
+        public ICommand AddToFavoriteCommand { get; }
 
-        public ShopItemViewModel(IUnitOfWork unitOfWork)
+        public ShopItemViewModel(IUnitOfWork unitOfWork,Item selectedItem)
         {
             _unitOfWork = unitOfWork;
+            SelectedItem = selectedItem;
             LoadItemCommand = CreateAsyncCommand(LoadItemAsync);
             LoadCommentsCommand = CreateAsyncCommand(LoadCommentAsync);
             AddToCartCommand = CreateAsyncCommand(AddToCartAsync);
-            NavigateToSizeHelpCommand = CreateCommand(NavigateToSizeHelp);
+            AddToFavoriteCommand = CreateAsyncCommand(AddToFavoriteAsync);
+            AddCommentCommand = CreateAsyncCommand(AddCommentAsync);
+        }
+
+        public async Task InitializeAsync()
+        {
+            await LoadItemAsync();
+            await LoadCommentAsync();
         }
 
         private async Task LoadItemAsync()
         {
             Items.Clear();
 
+            if (SelectedItem == null)
+            {
+                MessageBox.Show("SelectedItem == null, загрузка невозможна");
+                return;
+            }
+
+
+            if (_unitOfWork.LastViews == null)
+            {
+                MessageBox.Show("LastViews репозиторий не инициализирован");
+                return;
+            }
+
             var itemId = CurrentItem.ItemId;
+
+            try
+            {
+                if (CurrentUser.UserId != 0)
+                {
+                    var lastview = new LastView
+                    {
+                        UserId = CurrentUser.UserId,
+                        ItemId = SelectedItem.Id,
+                        TimeView = DateTime.Now
+                    };
+                    await _unitOfWork.LastViews.Add(lastview);
+                    await _unitOfWork.CompleteAsync();
+                    MessageBox.Show("LastView добавлен");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при добавлении LastView: {ex.Message}");
+                return;
+            }
+
             var favorites = await _unitOfWork.Items.Find(f => f.Id == itemId);
 
             foreach (var fav in favorites)
@@ -63,8 +133,15 @@ namespace OOP_CourseWork.ViewModel
         {
             Comments.Clear();
 
-            var itemId = CurrentItem.ItemId;
+            var itemId = SelectedItem?.Id ?? 0;
             var favorites = await _unitOfWork.Comments.Find(f => f.ItemId == itemId);
+
+
+            if (itemId == 0)
+            {
+                MessageBox.Show("SelectedItem не установлен, невозможно загрузить комментарии");
+                return;
+            }
 
             foreach (var fav in favorites)
             {
@@ -106,15 +183,102 @@ namespace OOP_CourseWork.ViewModel
 
         }
 
-        private void NavigateToSizeHelp(object parameter)
+        private async Task AddToFavoriteAsync()
         {
-            if (parameter is Item item)
+            if (SelectedItem == null)
             {
-                CurrentItem.ItemId = item.Id;
+                MessageBox.Show("Товар не выбран.");
+                return;
+            }
 
-                var itemWindow = new SizeHelpWindow();
-                itemWindow.Show();
+            if (CurrentUser.UserId == 0)
+            {
+                MessageBox.Show("Вы не авторизованы.");
+                return;
+            }
+
+            var userId = CurrentUser.UserId;
+            var itemId = SelectedItem.Id;
+
+            var existing = await _unitOfWork.Favorites.Find(c => c.UserId == userId && c.ItemId == itemId);
+            if (existing.Any())
+            {
+                MessageBox.Show("Этот товар уже в избранном.");
+            }
+
+            var cartItem = new Favorite
+            {
+                UserId = userId,
+                ItemId = itemId
+            };
+
+            await _unitOfWork.Favorites.Add(cartItem);
+            await _unitOfWork.CompleteAsync();
+
+        }
+
+        private async Task UpdateItemRatingAsync(int itemId)
+        {
+            var comments = await _unitOfWork.Comments.Find(c => c.ItemId == itemId);
+            if (comments.Any())
+            {
+                // Средний рейтинг
+                double avgRating = comments.Average(c => c.Rating);
+                // Загружаем сам товар
+                var items = await _unitOfWork.Items.Find(i => i.Id == itemId);
+                var item = items.FirstOrDefault();
+                if (item != null)
+                {
+                    item.Rating = avgRating;
+                    // Обновляем товар в базе
+                    _unitOfWork.Items.Update(item);
+                    await _unitOfWork.CompleteAsync();
+
+                    // Обновляем выбранный элемент в VM, чтобы UI обновился
+                    SelectedItem.Rating = avgRating;
+                    OnPropertyChanged(nameof(SelectedItem));
+                }
             }
         }
+
+        private async Task AddCommentAsync()
+        {
+            if (string.IsNullOrWhiteSpace(NewCommentText))
+            {
+                MessageBox.Show("Комментарий не может быть пустым.");
+                return;
+            }
+
+            if (NewCommentRating < 1 || NewCommentRating > 5)
+            {
+                MessageBox.Show("Рейтинг должен быть от 1 до 5.");
+                return;
+            }
+
+            if (CurrentUser.UserId == 0)
+            {
+                MessageBox.Show("Только авторизованные пользователи могут оставлять комментарии.");
+                return;
+            }
+
+            var comment = new Comment
+            {
+                Description = NewCommentText,
+                UserId = CurrentUser.UserId,
+                ItemId = SelectedItem.Id,
+                Rating = NewCommentRating
+            };
+
+            await _unitOfWork.Comments.Add(comment);
+            await _unitOfWork.CompleteAsync();
+
+            // Обновляем рейтинг товара после добавления комментария
+            await UpdateItemRatingAsync(SelectedItem.Id);
+
+            NewCommentText = string.Empty;
+            NewCommentRating = 1; // сброс рейтинга
+            await LoadCommentAsync(); // Обновим список комментариев
+        }
+
     }
 }

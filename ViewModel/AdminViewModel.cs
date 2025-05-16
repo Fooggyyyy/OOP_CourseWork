@@ -16,6 +16,7 @@ public class AdminViewModel : ViewModelBase
     public ICommand UpdateItem { get; }
     public ICommand DeleteUser { get; }
     public ICommand LoadAdminDataCommand { get; }
+    public ICommand ChangeOrderStatusCommand { get; }
 
     private Item _selectedItem;
 
@@ -41,6 +42,18 @@ public class AdminViewModel : ViewModelBase
         }
     }
 
+    public ObservableCollection<Order> Orders { get; } = new();
+
+    private Order _selectedOrder;
+    public Order SelectedOrder
+    {
+        get => _selectedOrder;
+        set
+        {
+            _selectedOrder = value;
+            OnPropertyChanged(nameof(SelectedOrder));
+        }
+    }
 
     public AdminViewModel(IUnitOfWork unitOfWork)
     {
@@ -51,6 +64,7 @@ public class AdminViewModel : ViewModelBase
         DeleteItem = CreateAsyncCommand(DeleteItemAsync);
         UpdateItem = CreateAsyncCommand(UpdateItemAsync);
         DeleteUser = CreateAsyncCommand(DeleteUserAsync);
+        ChangeOrderStatusCommand = CreateAsyncCommand(ChangeOrderStatusAsync);
 
         LoadDataAsync();
     }
@@ -66,6 +80,12 @@ public class AdminViewModel : ViewModelBase
         var users = await _unitOfWork.Users.GetAll();
         foreach (var user in users)
             Users.Add(user);
+
+        Orders.Clear();
+        var orders = await _unitOfWork.Orders.GetAll();
+        foreach (var order in orders)
+            Orders.Add(order);
+
     }
 
     private async Task AddItemAsync(object parameter)
@@ -116,11 +136,34 @@ public class AdminViewModel : ViewModelBase
             return;
         }
 
-            MessageBox.Show("Выполняется");
+        MessageBox.Show("Выполняется");
         await _unitOfWork.Users.Remove(user);
         await _unitOfWork.CompleteAsync();
         Users.Remove(user);
     }
+
+    private async Task ChangeOrderStatusAsync(object parameter)
+    {
+        if (SelectedOrder == null)
+        {
+            MessageBox.Show("Выберите заказ для изменения статуса.");
+            return;
+        }
+
+        SelectedOrder.Status = SelectedOrder.Status switch
+        {
+            Status.Processing => Status.Shipped,
+            Status.Shipped => Status.Delivered,
+            Status.Delivered => Status.Delivered,
+            _ => SelectedOrder.Status
+        };
+
+        await _unitOfWork.Orders.Update(SelectedOrder);
+        await _unitOfWork.CompleteAsync();
+
+        OnPropertyChanged(nameof(Orders));
+    }
+
 }
 
 public static class SizeEnum

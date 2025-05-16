@@ -26,6 +26,8 @@ namespace OOP_CourseWork.DataBase.ModelCreating
                 .WithMany()
                 .HasForeignKey(e => e.ItemId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            entity.Property(e => e.Status).HasDefaultValue(Status.Processing);
         }
     }
 }

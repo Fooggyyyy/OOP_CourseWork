@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows;
 
 namespace OOP_CourseWork.ViewModel
 {
@@ -15,7 +16,7 @@ namespace OOP_CourseWork.ViewModel
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public ObservableCollection<LastView> LastViews { get; } = new();
+        private ObservableCollection<Item> _LastViewItems = new ObservableCollection<Item>();
 
         public ICommand LoadLastViewCommand { get; }
 
@@ -23,19 +24,46 @@ namespace OOP_CourseWork.ViewModel
         {
             _unitOfWork = unitOfWork;
             LoadLastViewCommand = CreateAsyncCommand(LoadLastViewAsync);
+
+            LoadLastViewCommand.Execute(null);
+        }
+
+        public ObservableCollection<Item> LastViewItems
+        {
+            get => _LastViewItems;
+            set
+            {
+                _LastViewItems = value;
+                OnPropertyChanged(nameof(LastViewItems));
+            }
         }
 
         private async Task LoadLastViewAsync()
         {
-            LastViews.Clear();
+            _LastViewItems.Clear();
 
-            var userId = CurrentUser.UserId;
-            var favorites = await _unitOfWork.LastViews.Find(f => f.UserId == userId);
+            // Получаем последние просмотры пользователя, сортируем по времени и берём 5 последних
+            var lastViews = (await _unitOfWork.LastViews.GetAll())
+                .Where(c => c.UserId == CurrentUser.UserId)
+                .OrderByDescending(c => c.TimeView) // сортировка по убыванию времени
+                .Take(5)
+                .ToList();
 
-            foreach (var fav in favorites)
+            // Получаем все товары и находим те, которые есть в последних просмотрах
+            var allItems = await _unitOfWork.Items.GetAll();
+
+            var filteredItems = lastViews
+                .Select(view => allItems.FirstOrDefault(item => item.Id == view.ItemId))
+                .Where(item => item != null && item.Name != null)
+                .ToList();
+
+            foreach (var item in filteredItems)
             {
-                LastViews.Add(fav);
+                _LastViewItems.Add(item);
             }
+
+            OnPropertyChanged(nameof(LastViewItems));
+
         }
     }
 }

@@ -21,7 +21,7 @@ namespace OOP_CourseWork.Model
     {
         White = 0,
         Green = 1,
-        Blue = 2,
+        Blue = 2,   
         Red = 3,
         Gray = 4,
         Pink = 5,

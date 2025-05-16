@@ -24,6 +24,7 @@
                 Histories = new Repository<History>(_context);
                 LastViews = new Repository<LastView>(_context);
                 Orders = new Repository<Order>(_context);
+                Contacts = new Repository<Contact>(_context);
             }
 
             public IRepository<User> Users { get; }
@@ -34,8 +35,9 @@
             public IRepository<History> Histories { get; }
             public IRepository<LastView> LastViews { get; }
             public IRepository<Order> Orders { get; }
+            public IRepository<Contact> Contacts { get; }
 
-            public async Task<int> CompleteAsync() => await _context.SaveChangesAsync();
+        public async Task<int> CompleteAsync() => await _context.SaveChangesAsync();
 
             public void Dispose()
             {

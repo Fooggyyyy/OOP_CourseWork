@@ -1,9 +1,5 @@
 ﻿using OOP_CourseWork.DataBase.Pattern.UnitOfWork;
 using OOP_CourseWork.Model.CurrentUser;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -20,12 +16,22 @@ namespace OOP_CourseWork.ViewModel
             set => Set(ref _bonus, value);
         }
 
+        private string _userName;
+        public string UserName
+        {
+            get => _userName;
+            set => Set(ref _userName, value);
+        }
+
         public ICommand LoadBonusCommand { get; }
 
         public BonusViewModel(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             LoadBonusCommand = CreateAsyncCommand(LoadBonusAsync);
+
+            // Автоматическая загрузка при создании
+            LoadBonusAsync();
         }
 
         private async Task LoadBonusAsync()
@@ -36,6 +42,7 @@ namespace OOP_CourseWork.ViewModel
             if (user != null)
             {
                 Bonus = user.Bonus;
+                UserName = user.Name; // предполагается, что есть поле Name
             }
         }
     }

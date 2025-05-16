@@ -66,7 +66,7 @@ namespace OOP_CourseWork.ViewModel
                 return;
             }
 
-            CurrentUser.SetUser(user.Id); 
+            CurrentUser.SetUser(user.Id, user.Bonus); 
 
             MessageBox.Show($"Добро пожаловать, {user.Name}!");
 

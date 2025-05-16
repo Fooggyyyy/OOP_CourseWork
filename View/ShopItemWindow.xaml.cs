@@ -27,9 +27,13 @@ namespace OOP_CourseWork.View
         {
             InitializeComponent();
             _unitOfWork = unitOfWork;
-            var vm = new ShopItemViewModel(_unitOfWork);
+            var vm = new ShopItemViewModel(_unitOfWork, item);
             vm.SelectedItem = item;
             DataContext = vm;
+
+            this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
+
+            vm.LoadCommentsCommand.Execute(null);
 
         }
 

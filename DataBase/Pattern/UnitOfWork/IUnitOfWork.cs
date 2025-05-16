@@ -18,6 +18,7 @@ namespace OOP_CourseWork.DataBase.Pattern.UnitOfWork
         IRepository<History> Histories { get; }
         IRepository<LastView> LastViews { get; }
         IRepository<Order> Orders { get; }
+        IRepository<Contact> Contacts { get; }
 
         Task<int> CompleteAsync();
     }

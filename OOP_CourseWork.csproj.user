@@ -13,6 +13,9 @@
     <Compile Update="View\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\PaymentWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\ShopItemWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -24,10 +27,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Recources\Style.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Recources\Translate\en.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Recources\Translate\ru.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\ActivePlaceWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PaymentWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ShopItemWindow.xaml">

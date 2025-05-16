@@ -1,12 +1,16 @@
-﻿<Application x:Class="OOP_CourseWork.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:OOP_CourseWork"
-             xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel;assembly=OOP_CourseWork"
+﻿    <Application x:Class="OOP_CourseWork.App"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:local="clr-namespace:OOP_CourseWork"
+                 xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel;assembly=OOP_CourseWork"
 
-             >
+                 >
             
-    <Application.Resources>
-        <FontFamily x:Key="Macondo">pack://application:,,,/OOP_CourseWork;component/Recources/Fonts/#Macondo Swash Caps</FontFamily>
-    </Application.Resources>
-</Application>
+        <Application.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="Recources/Translate/ru.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Application.Resources>
+    </Application>

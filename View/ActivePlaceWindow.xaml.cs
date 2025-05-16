@@ -27,6 +27,9 @@ namespace OOP_CourseWork
         {
             InitializeComponent();
             _unitOfWork = unitOfWork;
+
+            
+            this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

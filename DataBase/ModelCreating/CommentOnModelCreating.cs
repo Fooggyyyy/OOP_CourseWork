@@ -25,6 +25,8 @@ namespace OOP_CourseWork.DataBase.ModelCreating
                 .WithMany()
                 .HasForeignKey(e => e.ItemId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            entity.Property(e => e.Rating);
         }
     }
 }

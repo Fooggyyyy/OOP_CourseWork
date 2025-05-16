@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_CourseWork"
+        xmlns:properties="clr-namespace:System;assembly=mscorlib"
+        Icon="C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\Recources\tiktok_logo_icon_186896.ico"
         xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel"
         mc:Ignorable="d"
         Title="ContactWindow" Height="450" Width="800"
@@ -61,9 +63,8 @@
         Content="Регистрация"
         Command="{Binding RegisterCommand}" />
 
-
-        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="Помощь"
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="{DynamicResource Help}"
                FontFamily="Almarai"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
@@ -75,7 +76,7 @@
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
-            <TextBlock Text="Контакты"
+            <TextBlock Text="{DynamicResource Contacts}"
                FontFamily="Almarai"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
@@ -86,7 +87,7 @@
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
-            <TextBlock Text="Активные точки"
+            <TextBlock Text="{DynamicResource ActiveSpots}"
                FontFamily="Almarai"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
@@ -98,7 +99,7 @@
             </TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
-            <TextBlock Text="Orders"
+            <TextBlock Text="{DynamicResource Orders}"
   FontFamily="Almarai"
   HorizontalAlignment="Center"
   VerticalAlignment="Center"
@@ -108,7 +109,7 @@
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Last View"
+            <TextBlock Text="{DynamicResource LastViewed}"
   FontFamily="Almarai"
   HorizontalAlignment="Center"
   VerticalAlignment="Center"
@@ -118,7 +119,7 @@
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="History"
+            <TextBlock Text="{DynamicResource History}"
   FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -128,7 +129,7 @@ MouseLeftButtonUp="NavigateToHistory">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Bonus"
+            <TextBlock Text="{DynamicResource Bonus}"
  FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -138,7 +139,7 @@ MouseLeftButtonUp="NavigateToBonus">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Favorite"
+            <TextBlock Text="{DynamicResource Favorites}"
   FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -148,7 +149,7 @@ MouseLeftButtonUp="NavigateToFavorite">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Cart"
+            <TextBlock Text="{DynamicResource AddToCart}"
   FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -158,7 +159,7 @@ MouseLeftButtonUp="NavigateToCart">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Shop"
+            <TextBlock Text="{DynamicResource Store}"
                       x:Name="shop"
  FontFamily="Almarai"
 HorizontalAlignment="Center"

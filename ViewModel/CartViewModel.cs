@@ -19,7 +19,6 @@ namespace OOP_CourseWork.ViewModel
         public ICommand LoadCartCommand { get; }
         public ICommand RemoveCartCommand { get; }
 
-        // Коллекция для хранения элементов корзины (Item)
         private ObservableCollection<Item> _cartItems = new ObservableCollection<Item>();
         public ObservableCollection<Item> CartItems
         {
@@ -57,8 +56,6 @@ namespace OOP_CourseWork.ViewModel
 
                 var filteredItems = allItems.Where(item => items.Contains(item.Id)).ToList();
 
-                string message = "Items in cart:\n";
-
                 foreach (var item in filteredItems)
                 {
                     if (item.Name != null)
@@ -81,20 +78,16 @@ namespace OOP_CourseWork.ViewModel
         {
             if (parameter is Item itemToRemove)
             {
-                // Получаем список всех Cart
                 var carts = await _unitOfWork.Carts.GetAll();
 
-                // Находим нужный Cart
                 var cartToRemove = carts.FirstOrDefault(c => c.ItemId == itemToRemove.Id && c.UserId == CurrentUser.UserId);
 
                 if (cartToRemove != null)
                 {
                     await _unitOfWork.Carts.Remove(cartToRemove);
 
-                    // Удаляем Item из коллекции CartItems
                     CartItems.Remove(itemToRemove);
 
-                    // Сохраняем изменения в базе данных
                     await _unitOfWork.CompleteAsync();
                 }
             }

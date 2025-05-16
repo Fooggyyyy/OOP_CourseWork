@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_CourseWork"
         xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel"
+        Icon="C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\Recources\tiktok_logo_icon_186896.ico"
+        xmlns:properties="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Closing="Window_Closing"
         Title="CartWindow" Height="450" Width="800">
@@ -43,6 +45,51 @@
             <TextBlock Text="{Binding SelectedItem.Price}" />
         </StackPanel>
 
+        <GroupBox Header="Добавить комментарий" Grid.Row="1" Margin="10,202,109,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <StackPanel>
+                <TextBox Text="{Binding NewCommentText, UpdateSourceTrigger=PropertyChanged}" 
+                         AcceptsReturn="True" Height="60" TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         Margin="0,0,0,10" />
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,10">
+                    <TextBlock Text="Рейтинг:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <ComboBox Width="50" 
+          SelectedValue="{Binding NewCommentRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+          SelectedValuePath="Content">
+                        <ComboBoxItem Content="1" />
+                        <ComboBoxItem Content="2" />
+                        <ComboBoxItem Content="3" />
+                        <ComboBoxItem Content="4" />
+                        <ComboBoxItem Content="5" />
+                    </ComboBox>
+                </StackPanel>
+
+                <Button Content="Добавить комментарий"
+                        Command="{Binding AddCommentCommand}"
+                        Height="35" Width="150" HorizontalAlignment="Left" />
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Комментарии" Grid.Row="1" Margin="10,122,76,142" Grid.ColumnSpan="2" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Comments}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Gray" BorderThickness="1" Margin="0,0,0,5" Padding="5" CornerRadius="5">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+                                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                        <TextBlock Text="Рейтинг: " FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding Rating}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </GroupBox>
 
         <!-- Кнопка Добавить в корзину -->
         <Button Content="Добавить в корзину"
@@ -54,11 +101,20 @@
                 Margin="0,10,0,0"
                 Padding="10,5"
                 Command="{Binding AddToCartCommand}" />
+        <Button Content="Добавить в Избраннле"
+                Grid.Row="1"
+                Grid.ColumnSpan="5"
+                HorizontalAlignment="Center"
+                Height="40"
+                Width="180"
+                Margin="0,10,0,-100"
+                Padding="10,5"
+                Command="{Binding AddToFavoriteCommand}" />
 
         <Label Content="Sign In/Register"  MouseLeftButtonUp="NavigateToSign" FontFamily="Inter" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
 
-        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="Помощь"
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="{DynamicResource Help}"
                FontFamily="Almarai"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
@@ -70,7 +126,7 @@
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
-            <TextBlock Text="Контакты"
+            <TextBlock Text="{DynamicResource Contacts}"
                FontFamily="Almarai"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
@@ -81,7 +137,7 @@
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
-            <TextBlock Text="Активные точки"
+            <TextBlock Text="{DynamicResource ActiveSpots}"
                FontFamily="Almarai"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
@@ -93,7 +149,7 @@
             </TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
-            <TextBlock Text="Orders"
+            <TextBlock Text="{DynamicResource Orders}"
   FontFamily="Almarai"
   HorizontalAlignment="Center"
   VerticalAlignment="Center"
@@ -103,7 +159,7 @@
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Last View"
+            <TextBlock Text="{DynamicResource LastViewed}"
   FontFamily="Almarai"
   HorizontalAlignment="Center"
   VerticalAlignment="Center"
@@ -113,7 +169,7 @@
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="History"
+            <TextBlock Text="{DynamicResource History}"
   FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -123,7 +179,7 @@ MouseLeftButtonUp="NavigateToHistory">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Bonus"
+            <TextBlock Text="{DynamicResource Bonus}"
  FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -133,7 +189,7 @@ MouseLeftButtonUp="NavigateToBonus">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Favorite"
+            <TextBlock Text="{DynamicResource Favorites}"
   FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -143,7 +199,7 @@ MouseLeftButtonUp="NavigateToFavorite">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Cart"
+            <TextBlock Text="{DynamicResource AddToCart}"
   FontFamily="Almarai"
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
@@ -153,7 +209,7 @@ MouseLeftButtonUp="NavigateToCart">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <TextBlock Text="Shop"
+            <TextBlock Text="{DynamicResource Store}"
                       x:Name="shop"
  FontFamily="Almarai"
 HorizontalAlignment="Center"

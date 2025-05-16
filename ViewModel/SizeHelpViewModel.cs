@@ -1,48 +1,70 @@
-﻿using OOP_CourseWork.Model;
+﻿using OOP_CourseWork.DataBase.Pattern.UnitOfWork;
+using OOP_CourseWork.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace OOP_CourseWork.ViewModel
 {
     public class SizeHelpViewModel : ViewModelBase
     {
+        private readonly IUnitOfWork _unitOfWork;
         private double _height;
-        private double _width;
-        private Size _calculatedSize;
-
         public double Height
         {
             get => _height;
-            set => Set(ref _height, value);
+            set
+            {
+                _height = value;
+                OnPropertyChanged();
+            }
         }
 
-        public double Width
+        private double _weight;
+        public double Weight
         {
-            get => _width;
-            set => Set(ref _width, value);
+            get => _weight;
+            set
+            {
+                _weight = value;
+                OnPropertyChanged();
+            }
         }
 
-        public Size CalculatedSize
+        private OOP_CourseWork.Model.Size? _recommendedSize;
+        public OOP_CourseWork.Model.Size? RecommendedSize
         {
-            get => _calculatedSize;
-            set => Set(ref _calculatedSize, value);
+            get => _recommendedSize;
+            set
+            {
+                _recommendedSize = value;
+                OnPropertyChanged();
+            }
         }
 
-        public ICommand CalculateSizeCommand { get; }
+        public ICommand RecommendSizeCommand { get; }
 
-        public SizeHelpViewModel()
+        public SizeHelpViewModel(IUnitOfWork unitOfWork)
         {
-            CalculateSizeCommand = CreateCommand(CalculateSize);
+            _unitOfWork = unitOfWork;
+            RecommendSizeCommand = CreateAsyncCommand(RecommendSize);
         }
 
-        private void CalculateSize(object parameter)
+        private async Task RecommendSize()
         {
-            var sizeHelp = new SizeHelp(Height, Width);
-            CalculatedSize = sizeHelp.DetermineSize();
+            try
+            {
+                var helper = new SizeHelp(Height, Weight);
+                RecommendedSize = helper.DetermineSize();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

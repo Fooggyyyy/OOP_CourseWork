@@ -1,0 +1,41 @@
+﻿<Window x:Class="OOP_CourseWork.View.PaymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OOP_CourseWork.View"
+        mc:Ignorable="d"
+        Title="PaymentWindow" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Ваши товары:" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding CartItems}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{Binding PhotoPath}" Height="150" Width="120" Stretch="UniformToFill" Margin="30"/>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Price}" />
+                                <TextBlock Text="{Binding Size}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,10,0,0">
+            <CheckBox Content="Использовать бонусы" IsChecked="{Binding UseBonus}" />
+            <TextBlock Text="{Binding TotalPrice, StringFormat=Итоговая цена: {0} ₽}" FontWeight="Bold" Margin="0,5"/>
+            <Button Content="Оплатить" Command="{Binding PayCommand}" Width="120" HorizontalAlignment="Left" Margin="0,10,0,0" Click="NavigateToMain"/>
+        </StackPanel>
+    </Grid>
+</Window>

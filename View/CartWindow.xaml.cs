@@ -1,4 +1,5 @@
 ﻿using OOP_CourseWork.DataBase.Pattern.UnitOfWork;
+using OOP_CourseWork.View;
 using OOP_CourseWork.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -28,11 +29,21 @@ namespace OOP_CourseWork
             InitializeComponent();
             _unitOfWork = unitOfWork;
             DataContext = new CartViewModel(unitOfWork);
+
+            
+            this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
         }
 
         private void NavigateToHelp(object sender, MouseButtonEventArgs e)
         {
             var newWindow = new HelpWindow(_unitOfWork);
+            newWindow.Show();
+            this.Hide();
+        }
+
+        private void NavigateToPayment(object sender, RoutedEventArgs e)
+        {
+            var newWindow = new PaymentWindow(_unitOfWork);
             newWindow.Show();
             this.Hide();
         }

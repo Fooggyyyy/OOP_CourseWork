@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="Help">Help</sys:String>
+    <sys:String x:Key="ActiveSpots">Active place</sys:String>
+    <sys:String x:Key="Contacts">Contacts</sys:String>
+    <sys:String x:Key="Orders">Order</sys:String>
+    <sys:String x:Key="LastViewed">Last view</sys:String>
+    <sys:String x:Key="History">History</sys:String>
+    <sys:String x:Key="Bonus">Bonus</sys:String>
+    <sys:String x:Key="Favorites">Favorites</sys:String>
+    <sys:String x:Key="Store">Shop</sys:String>
+    <sys:String x:Key="Size">Size</sys:String>
+    <sys:String x:Key="Color">Color</sys:String>
+    <sys:String x:Key="ClothingType">Clothing type</sys:String>
+    <sys:String x:Key="MinPrice">Min price</sys:String>
+    <sys:String x:Key="MaxPrice">Max price</sys:String>
+    <sys:String x:Key="MinRating">Min rating</sys:String>
+    <sys:String x:Key="Apply">Apply</sys:String>
+    <sys:String x:Key="Login">Login</sys:String>
+    <sys:String x:Key="NoAccountRegister">No account? Register</sys:String>
+    <sys:String x:Key="Minsk">Minsk</sys:String>
+    <sys:String x:Key="Address">Bobruyskaya street 25</sys:String>
+    <sys:String x:Key="WorkingHours">Working hours</sys:String>
+    <sys:String x:Key="EverydayHours">Every day: 12:00 - 21:00</sys:String>
+    <sys:String x:Key="WriteToUs">Write to us:</sys:String>
+    <sys:String x:Key="SocialNetworks">Our social networks</sys:String>
+    <sys:String x:Key="Register">Register</sys:String>
+    <sys:String x:Key="AddToCart">Cart</sys:String>
+    
+</ResourceDictionary>

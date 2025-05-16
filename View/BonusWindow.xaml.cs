@@ -1,4 +1,5 @@
 ﻿using OOP_CourseWork.DataBase.Pattern.UnitOfWork;
+using OOP_CourseWork.View;
 using OOP_CourseWork.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,13 @@ namespace OOP_CourseWork
             InitializeComponent();
             _unitOfWork = unitOfWork;
             DataContext = new BonusViewModel(unitOfWork);
+
+            this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
+
         }
+
+
+
 
         private void NavigateToMain(object sender, MouseButtonEventArgs e)
         {
