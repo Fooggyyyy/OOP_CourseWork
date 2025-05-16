@@ -50,7 +50,6 @@ namespace OOP_CourseWork.ViewModel
                 var carts = await _unitOfWork.Carts.GetAll();
 
                 var items = carts.Where(c => c.UserId == CurrentUser.UserId).Select(x => x.ItemId).ToList();
-                MessageBox.Show($"Found {items.Count} items for user {CurrentUser.UserId}");
 
                 var allItems = await _unitOfWork.Items.GetAll();
 

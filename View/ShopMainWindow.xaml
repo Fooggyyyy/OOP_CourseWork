@@ -1,4 +1,6 @@
 ﻿<Window x:Class="OOP_CourseWork.View.ShopMainWindow"
+                MinWidth="850" MinHeight="600"
+        MaxWidth="850" MaxHeight="600"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -22,28 +24,82 @@
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Rix"
-           FontFamily="Segoe UI"
-           Grid.Column="0"
-           Grid.Row="0"
-           HorizontalAlignment="Left"
-           VerticalAlignment="Top"
-           MouseLeftButtonUp="NavigateToMain">
+        <TextBlock Text="Rix" MouseLeftButtonUp="NavigateToMain"
+               FontFamily="Segoe UI"
+               FontWeight="Bold"
+               Foreground="Black"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="0,0,0,10">
             <TextBlock.LayoutTransform>
-                <ScaleTransform ScaleX="4" ScaleY="4" />
+                <ScaleTransform ScaleX="3" ScaleY="3" />
             </TextBlock.LayoutTransform>
         </TextBlock>
-
+        <Label Content="Sign In / Register"
+           FontFamily="Inter"
+           FontSize="14"
+           Foreground="Black"
+           Cursor="Hand"
+           HorizontalAlignment="Left"
+           VerticalAlignment="Center"
+           Grid.Column="1"
+           Grid.Row="0"
+           Margin="10,0,0,0"
+           MouseLeftButtonUp="NavigateToSign">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="#CCCCCC"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="TextBlock.TextDecorations" Value="None"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                            <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
         <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Items}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10" MouseLeftButtonUp="Item_MouseLeftButtonUp">
-                            <StackPanel Orientation="Vertical">
-                                <Image Source="{Binding PhotoPath}" Height="150" Width ="120" Stretch="UniformToFill" Margin="30 30 30 30"/>
-                                <TextBlock Text="{Binding Name}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding Price}" />
-                                <TextBlock Text="{Binding Size}" />
+                        <Border BorderBrush="#FFDDDDDD" BorderThickness="1" Margin="10" 
+                        Padding="10" Background="White"
+                        MouseLeftButtonUp="Item_MouseLeftButtonUp"
+                        Width="180" Height="280">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                <!-- Фото с центрированием и ограничением размера -->
+                                <Border Width="120" Height="150" Margin="0 0 0 10">
+                                    <Image Source="{Binding PhotoPath}" 
+                                   Stretch="UniformToFill"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                                </Border>
+
+                                <!-- Текст с красивым оформлением -->
+                                <TextBlock Text="{Binding Name}" 
+                                   FontWeight="SemiBold" 
+                                   FontSize="14"
+                                   TextAlignment="Center"
+                                   Foreground="#FF333333"
+                                   Margin="0 0 0 5"/>
+
+                                <TextBlock Text="{Binding Price}" 
+                                   FontSize="13"
+                                   TextAlignment="Center"
+                                   Foreground="#FF555555"
+                                   Margin="0 0 0 3"/>
+
+                                <TextBlock Text="{Binding Size}" 
+                                   FontSize="12"
+                                   TextAlignment="Center"
+                                   Foreground="#FF777777"/>
                             </StackPanel>
                         </Border>
                     </DataTemplate>
@@ -52,13 +108,13 @@
         </ScrollViewer>
 
 
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="5" VerticalAlignment="Top">
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="5,5,0,0" VerticalAlignment="Top" Height="444">
 
             <!-- 🔍 Поиск по названию -->
             <TextBlock Text="Название" Margin="0,5"/>
             <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
              ToolTip="Введите название товара"
-             Width="150"/>
+             Width="75"/>
 
             <TextBlock Text="Размер" Margin="0,5"/>
             <ComboBox ItemsSource="{x:Static viewmodel:SizeEnum.Values}" 
@@ -81,45 +137,86 @@
             <TextBlock Text="Мин рейтинг" Margin="0,5"/>
             <TextBox Text="{Binding MinRating}" />
 
-            <Button Content="Применить фильтр" 
+            <Button Content="Применить"  
             Command="{Binding ApplyFilterCommand}" 
             Margin="0,10,0,0"/>
         </StackPanel>
 
 
-
-        <Label Content="Sign In/Register"  MouseLeftButtonUp="NavigateToSign" FontFamily="Inter" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
-
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <!-- Элемент "Help" -->
             <TextBlock Text="{DynamicResource Help}"
-               FontFamily="Almarai"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Margin="20,0"
-               MouseLeftButtonUp="NavigateToHelp"
->
+       FontFamily="Almarai"
+       HorizontalAlignment="Center"
+       VerticalAlignment="Center"
+       Margin="20,0"
+       Cursor="Hand"
+       MouseLeftButtonUp="NavigateToHelp"
+       Foreground="Black">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="TextDecorations" Value="Underline"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
                 <TextBlock.LayoutTransform>
                     <ScaleTransform ScaleX="1" ScaleY="1" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
+            <!-- Элемент "Contacts" -->
             <TextBlock Text="{DynamicResource Contacts}"
-               FontFamily="Almarai"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Margin="20,0"
-               MouseLeftButtonUp="NavigateToContact">
+       FontFamily="Almarai"
+       HorizontalAlignment="Center"
+       VerticalAlignment="Center"
+       Margin="20,0"
+       Cursor="Hand"
+       MouseLeftButtonUp="NavigateToContact"
+       Foreground="Black">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="LightGray"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="TextDecorations" Value="Underline"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
                 <TextBlock.LayoutTransform>
                     <ScaleTransform ScaleX="1" ScaleY="1" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
+            <!-- Элемент "ActiveSpots" -->
             <TextBlock Text="{DynamicResource ActiveSpots}"
-               FontFamily="Almarai"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Margin="20,0"
-               MouseLeftButtonUp="NavigateToActivePlace">
+       FontFamily="Almarai"
+       HorizontalAlignment="Center"
+       VerticalAlignment="Center"
+       Margin="20,0"
+       Cursor="Hand"
+       MouseLeftButtonUp="NavigateToActivePlace"
+       Foreground="Black">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="LightGray"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="TextDecorations" Value="Underline"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
                 <TextBlock.LayoutTransform>
                     <ScaleTransform ScaleX="1" ScaleY="1" />
                 </TextBlock.LayoutTransform>
@@ -192,7 +289,7 @@ MouseLeftButtonUp="NavigateToCart">
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
 Margin="5,0"
-PreviewMouseDown ="ShopBurgerMenuOpen">
+PreviewMouseDown ="NavigateToShopMainWindow">
                 <TextBlock.LayoutTransform>
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>

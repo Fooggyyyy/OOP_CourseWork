@@ -61,7 +61,9 @@ namespace OOP_CourseWork.ViewModel
                 {
                     var adminWindow = new AdminWindow(_unitOfWork);
                     adminWindow.Show();
-                    
+
+                    Application.Current.Windows.OfType<SignWindow>().FirstOrDefault()?.Hide();
+
                 });
                 return;
             }

@@ -1,4 +1,5 @@
 ﻿using OOP_CourseWork.DataBase.Pattern.UnitOfWork;
+using OOP_CourseWork.View;
 using OOP_CourseWork.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,12 @@ namespace OOP_CourseWork
             newWindow.Show();
             this.Hide();
         }
-
+        private void NavigateToShopMainWindow(object sender, MouseButtonEventArgs e)
+        {
+            ShopMainWindow shopWindow = new ShopMainWindow(_unitOfWork);
+            shopWindow.Show();
+            this.Hide();
+        }
         private void NavigateToActivePlace(object sender, MouseButtonEventArgs e)
         {
             var newWindow = new ActivePlaceWindow(_unitOfWork);

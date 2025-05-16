@@ -65,7 +65,6 @@ namespace OOP_CourseWork.ViewModel
                 await _unitOfWork.CompleteAsync();
 
                 SentContacts.Add(contact);
-                MessageBox.Show("Сообщение отправлено!");
 
                 // Очистка формы
                 Name = string.Empty;

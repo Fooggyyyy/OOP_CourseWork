@@ -58,6 +58,7 @@ namespace OOP_CourseWork.ViewModel
         public Action? CloseAction { get; set; }
 
         public ICommand AddCommentCommand { get; }
+        public ICommand BackToShopCommand { get; }
 
         public ICommand LoadItemCommand { get; }
         public ICommand LoadCommentsCommand { get; }
@@ -73,6 +74,7 @@ namespace OOP_CourseWork.ViewModel
             AddToCartCommand = CreateAsyncCommand(AddToCartAsync);
             AddToFavoriteCommand = CreateAsyncCommand(AddToFavoriteAsync);
             AddCommentCommand = CreateAsyncCommand(AddCommentAsync);
+            BackToShopCommand =  CreateAsyncCommand(BackToShop);
         }
 
         public async Task InitializeAsync()
@@ -81,6 +83,31 @@ namespace OOP_CourseWork.ViewModel
             await LoadCommentAsync();
         }
 
+        private async Task BackToShop()
+        {
+            var currentWindow = Application.Current.Windows
+                .OfType<Window>()
+                .FirstOrDefault(w => w.DataContext == this);
+
+
+            var mainWindow = Application.Current.Windows.OfType<ShopMainWindow>().FirstOrDefault();
+
+            if (mainWindow != null)
+            {
+                mainWindow.DataContext = new ShopMainViewModel(_unitOfWork);
+                mainWindow.Title = "Магазин";
+            }
+
+            // Назначаем основное окно, чтобы закрытие текущего не завершило приложение
+            Application.Current.MainWindow = mainWindow;
+
+
+                mainWindow?.Show();
+                currentWindow?.Hide();
+            
+
+
+        }
         private async Task LoadItemAsync()
         {
             Items.Clear();
@@ -112,7 +139,6 @@ namespace OOP_CourseWork.ViewModel
                     };
                     await _unitOfWork.LastViews.Add(lastview);
                     await _unitOfWork.CompleteAsync();
-                    MessageBox.Show("LastView добавлен");
                 }
             }
             catch (Exception ex)

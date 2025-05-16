@@ -1,4 +1,5 @@
 ﻿using OOP_CourseWork.DataBase.Pattern.UnitOfWork;
+using OOP_CourseWork.View;
 using OOP_CourseWork.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,13 @@ namespace OOP_CourseWork
                     viewModel.Password = password;
                 }
             }
+        }
+
+        private void NavigateToShopMainWindow(object sender, MouseButtonEventArgs e)
+        {
+            ShopMainWindow shopWindow = new ShopMainWindow(_unitOfWork);
+            shopWindow.Show();
+            this.Hide();
         }
 
         private void NavigateToAdmin(object sender, MouseButtonEventArgs e)

@@ -31,6 +31,12 @@ namespace OOP_CourseWork
             this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
         }
 
+        private void NavigateToShopMainWindow(object sender, MouseButtonEventArgs e)
+        {
+            ShopMainWindow shopWindow = new ShopMainWindow(_unitOfWork);
+            shopWindow.Show();
+            this.Hide();
+        }
         private void NavigateToSizeHelp(object sender, RoutedEventArgs e)
         {
             var newWindow = new SizeHelpWindow(_unitOfWork);

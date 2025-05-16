@@ -35,6 +35,7 @@ namespace OOP_CourseWork.View
 
         }
 
+
         private void NavigateToHelp(object sender, MouseButtonEventArgs e)
         {
             var newWindow = new HelpWindow(_unitOfWork);
@@ -42,6 +43,12 @@ namespace OOP_CourseWork.View
             this.Hide();
         }
 
+        private void NavigateToShopMainWindow(object sender, MouseButtonEventArgs e)
+        {
+            ShopMainWindow shopWindow = new ShopMainWindow(_unitOfWork);
+            shopWindow.Show();
+            this.Hide();
+        }
 
         private void NavigateToContact(object sender, MouseButtonEventArgs e)
         {

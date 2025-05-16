@@ -33,6 +33,7 @@ namespace OOP_CourseWork
             services.AddTransient<ShopMainViewModel>();
             services.AddTransient<SignViewModel>();
             services.AddTransient<SizeHelpViewModel>();
+            services.AddTransient<PaymentViewModel>();
 
             services.AddTransient<MainWindow>();
             services.AddTransient<ActivePlaceWindow>();
@@ -50,6 +51,7 @@ namespace OOP_CourseWork
             services.AddTransient<ShopMainWindow>();
             services.AddTransient<SignWindow>();
             services.AddTransient<SizeHelpWindow>();
+            services.AddTransient<PaymentWindow>();
 
             _provider = services.BuildServiceProvider();
 

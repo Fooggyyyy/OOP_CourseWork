@@ -22,7 +22,7 @@ namespace OOP_CourseWork
         {
             InitializeComponent();
             _unitOfWork = unitOfWork;
-
+            Application.Current.MainWindow = this;
 
 
             this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
@@ -52,6 +52,13 @@ namespace OOP_CourseWork
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             KillProcess.FormClosing(sender, e);
+        }
+
+        private void NavigateToShopMainWindow(object sender, MouseButtonEventArgs e)
+        {
+            ShopMainWindow shopWindow = new ShopMainWindow(_unitOfWork);
+            shopWindow.Show();
+            this.Hide();
         }
 
         private void NavigateToOrders(object sender, MouseButtonEventArgs e)
@@ -107,13 +114,6 @@ namespace OOP_CourseWork
             popup.IsOpen = false;
             var newWindow = new CartWindow(_unitOfWork);
             newWindow.Show();
-            this.Hide();
-        }
-
-        private void NavigateToShopMainWindow(object sender, MouseButtonEventArgs e)
-        {
-            ShopMainWindow shopWindow = new ShopMainWindow(_unitOfWork);
-            shopWindow.Show();
             this.Hide();
         }
 

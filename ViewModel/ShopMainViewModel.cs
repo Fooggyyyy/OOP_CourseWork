@@ -74,6 +74,9 @@ namespace OOP_CourseWork.ViewModel
                 viewModel.SelectedItem = item;
                 window.Show();
 
+                Application.Current.Windows.OfType<ShopMainWindow>().FirstOrDefault()?.Hide();
+                Application.Current.Windows.OfType<CartWindow>().FirstOrDefault()?.Hide();
+
                 await viewModel.InitializeAsync();
             }
         }
@@ -113,6 +116,8 @@ namespace OOP_CourseWork.ViewModel
         }
 
     }
+
+
 
     public static class SizeEnum
     {

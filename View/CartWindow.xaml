@@ -1,4 +1,6 @@
 ﻿<Window x:Class="OOP_CourseWork.CartWindow"
+        MinWidth="780" MinHeight="430"
+        MaxWidth="800" MaxHeight="600"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -23,34 +25,79 @@
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Rix"
-           FontFamily="Segoe UI"
-           Grid.Column="0"
-           Grid.Row="0"
-           HorizontalAlignment="Left"
-           VerticalAlignment="Top"
-           MouseLeftButtonUp="NavigateToMain">
+        <TextBlock Text="Rix" MouseLeftButtonUp="NavigateToMain"
+               FontFamily="Segoe UI"
+               FontWeight="Bold"
+               Foreground="Black"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="0,0,0,10">
             <TextBlock.LayoutTransform>
-                <ScaleTransform ScaleX="4" ScaleY="4" />
+                <ScaleTransform ScaleX="3" ScaleY="3" />
             </TextBlock.LayoutTransform>
         </TextBlock>
-        <Label Content="Sign In/Register"  MouseLeftButtonUp="NavigateToSign" FontFamily="Inter" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
-        
+        <Label Content="Sign In / Register"
+           FontFamily="Inter"
+           FontSize="14"
+           Foreground="Black"
+           Cursor="Hand"
+           HorizontalAlignment="Left"
+           VerticalAlignment="Center"
+           Grid.Column="1"
+           Grid.Row="0"
+           Margin="10,0,0,0"
+           MouseLeftButtonUp="NavigateToSign">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="#CCCCCC"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="TextBlock.TextDecorations" Value="None"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                            <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
-        <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto">
+
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+              VerticalScrollBarVisibility="Auto" Margin="20">
             <ItemsControl ItemsSource="{Binding CartItems}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" ItemWidth="180" ItemHeight="300" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10">
-                            <StackPanel Orientation="Vertical">
-                                <Image Source="{Binding PhotoPath}" Height="150" Width="120" Stretch="UniformToFill" Margin="30"/>
-                                <TextBlock Text="{Binding Name}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding Price}" />
-                                <TextBlock Text="{Binding Size}" />
-                                <Button Content="Удалить" 
-                            Margin="0,10,0,0"
-                            Command="{Binding DataContext.RemoveCartCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                            CommandParameter="{Binding}" />
+                        <Border BorderBrush="#DDD" BorderThickness="1" CornerRadius="10"
+                        Background="White" Margin="10" Padding="10"
+                        >
+                            <StackPanel HorizontalAlignment="Center">
+                                <Image Source="{Binding PhotoPath}" Height="140" Width="140"
+                               Stretch="UniformToFill" Margin="0,0,0,10"
+                               ClipToBounds="True" />
+
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"
+                                   TextAlignment="Center" TextWrapping="Wrap" Margin="0,0,0,6" />
+
+                                <TextBlock Text="{Binding Price}" Foreground="#4CAF50"
+                                   FontWeight="SemiBold" FontSize="13" TextAlignment="Center" Margin="0,0,0,6" />
+
+                                <TextBlock Text="{Binding Size}" FontSize="12" Foreground="Gray"
+                                   TextAlignment="Center" />
+
+                                <Button Content="🗑 Удалить"
+                                Margin="0,12,0,0" Width="120" Height="30"
+                                Background="#E53935" Foreground="White"
+                                FontWeight="Bold" BorderThickness="0"
+                                Cursor="Hand"
+                                Command="{Binding DataContext.RemoveCartCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                CommandParameter="{Binding}" />
                             </StackPanel>
                         </Border>
                     </DataTemplate>
@@ -58,42 +105,93 @@
             </ItemsControl>
         </ScrollViewer>
 
-
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="5" VerticalAlignment="Top">
-            <Button Content="Оплата" Margin="0,10,0,0" Click="NavigateToPayment"/>
+        <!-- Блок кнопки оплаты слева сверху -->
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,10,20,20">
+            <Button Content="Оплата"
+            Width="80" Height="40"
+            Background="#2196F3" Foreground="White"
+            FontWeight="Bold" FontFamily="Inter"
+            BorderThickness="0" Cursor="Hand"
+            Padding="10"
+            Click="NavigateToPayment" />
         </StackPanel>
 
 
+
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <!-- Элемент "Help" -->
             <TextBlock Text="{DynamicResource Help}"
-               FontFamily="Almarai"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Margin="20,0"
-               MouseLeftButtonUp="NavigateToHelp"
->
+       FontFamily="Almarai"
+       HorizontalAlignment="Center"
+       VerticalAlignment="Center"
+       Margin="20,0"
+       Cursor="Hand"
+       MouseLeftButtonUp="NavigateToHelp"
+       Foreground="Black">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="TextDecorations" Value="Underline"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
                 <TextBlock.LayoutTransform>
                     <ScaleTransform ScaleX="1" ScaleY="1" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
+            <!-- Элемент "Contacts" -->
             <TextBlock Text="{DynamicResource Contacts}"
-               FontFamily="Almarai"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Margin="20,0"
-               MouseLeftButtonUp="NavigateToContact">
+       FontFamily="Almarai"
+       HorizontalAlignment="Center"
+       VerticalAlignment="Center"
+       Margin="20,0"
+       Cursor="Hand"
+       MouseLeftButtonUp="NavigateToContact"
+       Foreground="Black">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="LightGray"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="TextDecorations" Value="Underline"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
                 <TextBlock.LayoutTransform>
                     <ScaleTransform ScaleX="1" ScaleY="1" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
+            <!-- Элемент "ActiveSpots" -->
             <TextBlock Text="{DynamicResource ActiveSpots}"
-               FontFamily="Almarai"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Margin="20,0"
-               MouseLeftButtonUp="NavigateToActivePlace">
+       FontFamily="Almarai"
+       HorizontalAlignment="Center"
+       VerticalAlignment="Center"
+       Margin="20,0"
+       Cursor="Hand"
+       MouseLeftButtonUp="NavigateToActivePlace"
+       Foreground="Black">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="LightGray"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="TextDecorations" Value="Underline"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
                 <TextBlock.LayoutTransform>
                     <ScaleTransform ScaleX="1" ScaleY="1" />
                 </TextBlock.LayoutTransform>
@@ -166,26 +264,12 @@ MouseLeftButtonUp="NavigateToCart">
 HorizontalAlignment="Center"
 VerticalAlignment="Center"
 Margin="5,0"
-PreviewMouseDown ="ShopBurgerMenuOpen">
+PreviewMouseDown ="NavigateToShopMainWindow">
                 <TextBlock.LayoutTransform>
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            <Popup x:Name="popup" PlacementTarget="{Binding ElementName=textBox}"
-          IsOpen="False" StaysOpen="True"  HorizontalAlignment="Right" Placement="Right" HorizontalOffset="-200" VerticalOffset="20">
-                <ListBox x:Name="listBox" Width="200"  Grid.Row="0" Grid.Column="0">
-                    <ListBoxItem Content="Закрыть" PreviewMouseDown ="CloseBurgerMenu"/>
-                    <ListBoxItem Content="Все"/>
-                    <ListBoxItem Content="Новое"/>
-                    <ListBoxItem Content= "Футболки"/>
-                    <ListBoxItem Content= "Толстовки"/>
-                    <ListBoxItem Content= "Джинсы"/>
-                    <ListBoxItem Content= "Рубашки"/>
-                    <ListBoxItem Content= "Куртки"/>
-                    <ListBoxItem Content= "Брюки"/>
-                    <ListBoxItem Content= "Акссесуары"/>
-                </ListBox>
-            </Popup>
+           
         </StackPanel>
     </Grid>
 </Window>

@@ -36,7 +36,12 @@ namespace OOP_CourseWork
 
 
 
-
+        private void NavigateToShopMainWindow(object sender, MouseButtonEventArgs e)
+        {
+            ShopMainWindow shopWindow = new ShopMainWindow(_unitOfWork);
+            shopWindow.Show();
+            this.Hide();
+        }
         private void NavigateToMain(object sender, MouseButtonEventArgs e)
         {
             var newWindow = new MainWindow(_unitOfWork);

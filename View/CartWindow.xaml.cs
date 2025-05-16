@@ -34,6 +34,12 @@ namespace OOP_CourseWork
             this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
         }
 
+        private void NavigateToShopMainWindow(object sender, MouseButtonEventArgs e)
+        {
+            ShopMainWindow shopWindow = new ShopMainWindow(_unitOfWork);
+            shopWindow.Show();
+            this.Hide();
+        }
         private void NavigateToHelp(object sender, MouseButtonEventArgs e)
         {
             var newWindow = new HelpWindow(_unitOfWork);
@@ -120,14 +126,5 @@ namespace OOP_CourseWork
             this.Hide();
         }
 
-        private void ShopBurgerMenuOpen(object sender, MouseButtonEventArgs e)
-        {
-            popup.IsOpen = true;
-        }
-
-        private void CloseBurgerMenu(object sender, MouseButtonEventArgs e)
-        {
-            popup.IsOpen = false;
-        }
     }
 }

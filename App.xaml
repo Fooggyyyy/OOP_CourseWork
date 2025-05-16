@@ -1,12 +1,9 @@
-﻿    <Application x:Class="OOP_CourseWork.App"
+﻿<Application x:Class="OOP_CourseWork.App"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:local="clr-namespace:OOP_CourseWork"
-                 xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel;assembly=OOP_CourseWork"
-
-                 >
-            
-        <Application.Resources>
+                 xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel;assembly=OOP_CourseWork">
+    <Application.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
                     <ResourceDictionary Source="Recources/Translate/ru.xaml"/>
