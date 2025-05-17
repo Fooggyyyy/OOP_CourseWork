@@ -15,7 +15,6 @@ namespace OOP_CourseWork.DataBase.Pattern.UnitOfWork
         IRepository<Comment> Comments { get; }
         IRepository<Cart> Carts { get; }
         IRepository<Favorite> Favorites { get; }
-        IRepository<History> Histories { get; }
         IRepository<LastView> LastViews { get; }
         IRepository<Order> Orders { get; }
         IRepository<Contact> Contacts { get; }

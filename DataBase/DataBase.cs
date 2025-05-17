@@ -25,7 +25,6 @@ namespace OOP_CourseWork.DataBase
         private string _connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=OOP_CourseWork;Trusted_Connection=True;";
 
         public DbSet<Favorite> Favorites => Set<Favorite>();
-        public DbSet<History> Historys => Set<History>();
         public DbSet<LastView> LastViews => Set<LastView>();
         public DbSet<Cart> Carts => Set<Cart>();
         public DbSet<Comment> Comments => Set<Comment>();
@@ -44,7 +43,6 @@ namespace OOP_CourseWork.DataBase
             modelBuilder.ApplyConfiguration(new CartOnModelCreating());
             modelBuilder.ApplyConfiguration(new CommentOnModelCreating());
             modelBuilder.ApplyConfiguration(new FavoriteOnModelCreating());
-            modelBuilder.ApplyConfiguration(new HistoryOnModelCreating());
             modelBuilder.ApplyConfiguration(new ItemOnModelCreating());
             modelBuilder.ApplyConfiguration(new LastViewOnModelCreating());
             modelBuilder.ApplyConfiguration(new OrderOnModelCreating());

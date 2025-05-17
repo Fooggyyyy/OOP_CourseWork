@@ -51,6 +51,12 @@ namespace OOP_CourseWork.ViewModel
                 return;
             }
 
+            if (!IsValidPassword(Password))
+            {
+                MessageBox.Show("Пароль должен содержать минимум 8 символов, включая буквы верхнего и нижнего регистра, цифры и специальные символы.");
+                return;
+            }
+
             var newUser = new User(Username, HashHelper.Hash(Password));
 
             await _unitOfWork.Users.Add(newUser);
@@ -58,5 +64,15 @@ namespace OOP_CourseWork.ViewModel
 
             MessageBox.Show("Регистрация успешна!");
         }
+
+        private bool IsValidPassword(string password)
+        {
+            return password.Length >= 8 &&
+                   password.Any(char.IsUpper) &&
+                   password.Any(char.IsLower) &&
+                   password.Any(char.IsDigit) &&
+                   password.Any(ch => "!@#$%^&*()_+-=[]{}|;:,.<>?".Contains(ch));
+        }
+
     }
 }

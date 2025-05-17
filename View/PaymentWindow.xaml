@@ -15,6 +15,17 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <TextBlock Text="{DynamicResource Store}"
+                       FontFamily="Almarai"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="SlateBlue"
+                       Cursor="Hand"
+                       Margin="150,0,0,0"
+                       DockPanel.Dock="Right"
+                       VerticalAlignment="Center"
+                       PreviewMouseDown="NavigateToMain"/>
+        
         <!-- Заголовок корзины -->
         <TextBlock Text="Ваша корзина" 
                FontWeight="Bold" 
