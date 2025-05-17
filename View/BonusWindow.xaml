@@ -64,7 +64,7 @@
 
 
         <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Margin="0,10,0,10">
-            <!-- Приветствие -->
+
             <TextBlock FontFamily="Inter" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,10">
         <Run Text="👋 Здравствуйте, " />
         <Run Text="{Binding UserName}" FontWeight="Bold" />
@@ -73,7 +73,6 @@
         <Run Text="{Binding Bonus}" FontWeight="Bold" Foreground="DarkGreen"/>
             </TextBlock>
 
-            <!-- Правила бонусной системы -->
             <Border Background="#F5F5F5" Padding="10" CornerRadius="8" BorderBrush="#DADADA" BorderThickness="1" Width ="550">
                 <StackPanel >
                     <TextBlock FontFamily="Inter" FontSize="14" FontWeight="Bold" Text="📌 Как работает бонусная система:" />
@@ -104,7 +103,7 @@
 
 
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <!-- Элемент "Help" -->
+
             <TextBlock Text="{DynamicResource Help}"
        FontFamily="Almarai"
        HorizontalAlignment="Center"
@@ -130,7 +129,7 @@
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
-            <!-- Элемент "Contacts" -->
+
             <TextBlock Text="{DynamicResource Contacts}"
        FontFamily="Almarai"
        HorizontalAlignment="Center"
@@ -156,7 +155,6 @@
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
-            <!-- Элемент "ActiveSpots" -->
             <TextBlock Text="{DynamicResource ActiveSpots}"
        FontFamily="Almarai"
        HorizontalAlignment="Center"

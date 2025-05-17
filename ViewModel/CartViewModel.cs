@@ -36,7 +36,6 @@ namespace OOP_CourseWork.ViewModel
             LoadCartCommand = CreateAsyncCommand(LoadCartAsync);
             RemoveCartCommand = CreateAsyncCommand(RemoveCartAsync);
 
-            // Загрузка корзины при инициализации
             LoadCartCommand.Execute(null);
         }
 

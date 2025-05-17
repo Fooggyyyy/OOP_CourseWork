@@ -19,21 +19,18 @@ public class RelayCommand : ICommand
         remove => CommandManager.RequerySuggested -= value;
     }
 
-    // Async без параметров
     public RelayCommand(Func<Task> execute, Func<bool> canExecute = null)
     {
         _asyncExecute = execute ?? throw new ArgumentNullException(nameof(execute));
         _canExecute = canExecute;
     }
 
-    // Async с параметром
     public RelayCommand(Func<object, Task> execute, Func<object, bool> canExecute = null)
     {
         _asyncExecuteWithParam = execute ?? throw new ArgumentNullException(nameof(execute));
         _canExecuteWithParam = canExecute;
     }
 
-    // Sync с параметром
     public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
     {
         _syncExecuteWithParam = execute ?? throw new ArgumentNullException(nameof(execute));

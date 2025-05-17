@@ -98,15 +98,11 @@ namespace OOP_CourseWork.ViewModel
                 mainWindow.Title = "Магазин";
             }
 
-            // Назначаем основное окно, чтобы закрытие текущего не завершило приложение
             Application.Current.MainWindow = mainWindow;
 
 
                 mainWindow?.Show();
                 currentWindow?.Hide();
-            
-
-
         }
         private async Task LoadItemAsync()
         {
@@ -248,19 +244,17 @@ namespace OOP_CourseWork.ViewModel
             var comments = await _unitOfWork.Comments.Find(c => c.ItemId == itemId);
             if (comments.Any())
             {
-                // Средний рейтинг
+
                 double avgRating = comments.Average(c => c.Rating);
-                // Загружаем сам товар
+
                 var items = await _unitOfWork.Items.Find(i => i.Id == itemId);
                 var item = items.FirstOrDefault();
                 if (item != null)
                 {
                     item.Rating = avgRating;
-                    // Обновляем товар в базе
                     _unitOfWork.Items.Update(item);
                     await _unitOfWork.CompleteAsync();
 
-                    // Обновляем выбранный элемент в VM, чтобы UI обновился
                     SelectedItem.Rating = avgRating;
                     OnPropertyChanged(nameof(SelectedItem));
                 }
@@ -298,12 +292,11 @@ namespace OOP_CourseWork.ViewModel
             await _unitOfWork.Comments.Add(comment);
             await _unitOfWork.CompleteAsync();
 
-            // Обновляем рейтинг товара после добавления комментария
             await UpdateItemRatingAsync(SelectedItem.Id);
 
             NewCommentText = string.Empty;
-            NewCommentRating = 1; // сброс рейтинга
-            await LoadCommentAsync(); // Обновим список комментариев
+            NewCommentRating = 1; 
+            await LoadCommentAsync(); 
         }
 
     }

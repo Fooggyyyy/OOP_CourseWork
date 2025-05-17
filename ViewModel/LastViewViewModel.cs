@@ -42,14 +42,12 @@ namespace OOP_CourseWork.ViewModel
         {
             _LastViewItems.Clear();
 
-            // Получаем последние просмотры пользователя, сортируем по времени и берём 5 последних
             var lastViews = (await _unitOfWork.LastViews.GetAll())
                 .Where(c => c.UserId == CurrentUser.UserId)
-                .OrderByDescending(c => c.TimeView) // сортировка по убыванию времени
+                .OrderByDescending(c => c.TimeView) 
                 .Take(5)
                 .ToList();
 
-            // Получаем все товары и находим те, которые есть в последних просмотрах
             var allItems = await _unitOfWork.Items.GetAll();
 
             var filteredItems = lastViews

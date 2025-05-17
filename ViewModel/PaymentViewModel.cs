@@ -40,7 +40,7 @@ public class PaymentViewModel : ViewModelBase
                 return RawTotalPrice;
 
             int maxBonuses = Math.Min(CurrentUser.Bonus, 10);
-            double discount = 0.05 * maxBonuses; // 5% per bonus
+            double discount = 0.05 * maxBonuses; 
             return (int)(RawTotalPrice * (1 - discount));
         }
     }
@@ -88,7 +88,6 @@ public class PaymentViewModel : ViewModelBase
             return;
         }
 
-        // Добавление заказов
         foreach (var item in CartItems)
         {
             var order = new Order
@@ -102,7 +101,6 @@ public class PaymentViewModel : ViewModelBase
             await _unitOfWork.Orders.Add(order);
         }
 
-        // Применение бонусов
         if (UseBonus && rawTotal >= 10000 && userBonus > 0)
         {
             int bonusesUsed = Math.Min(userBonus, 10);
@@ -117,7 +115,6 @@ public class PaymentViewModel : ViewModelBase
 
         await _unitOfWork.Users.Update(user);
 
-        // Очистка корзины
         var allCarts = await _unitOfWork.Carts.GetAll();
         var userCarts = allCarts.Where(c => c.UserId == CurrentUser.UserId).ToList();
         foreach (var cart in userCarts)

@@ -21,15 +21,12 @@ public abstract class ViewModelBase : INotifyPropertyChanged
         return true;
     }
 
-    // Async без параметров
     protected ICommand CreateAsyncCommand(Func<Task> execute, Func<bool> canExecute = null)
         => new RelayCommand(execute, canExecute);
 
-    // Async с параметром
     protected ICommand CreateAsyncCommand(Func<object, Task> execute, Func<object, bool> canExecute = null)
         => new RelayCommand(execute, canExecute);
 
-    // Sync с параметром
     protected ICommand CreateCommand(Action<object> execute, Func<object, bool> canExecute = null)
         => new RelayCommand(execute, canExecute);
 }

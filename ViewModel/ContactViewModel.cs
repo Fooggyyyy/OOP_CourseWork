@@ -66,7 +66,6 @@ namespace OOP_CourseWork.ViewModel
 
                 SentContacts.Add(contact);
 
-                // Очистка формы
                 Name = string.Empty;
                 Email = string.Empty;
                 Description = string.Empty;

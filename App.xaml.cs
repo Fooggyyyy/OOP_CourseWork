@@ -57,14 +57,12 @@ namespace OOP_CourseWork
 
             base.OnStartup(e);
 
-            // создаём UnitOfWork
             var optionsBuilder = new DbContextOptionsBuilder<OOP_CourseWork.DataBase.AppContext>();
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=OOP_CourseWork;Trusted_Connection=True;");
 
             var dbContext = new OOP_CourseWork.DataBase.AppContext(optionsBuilder.Options);
             var unitOfWork = new UnitOfWork(dbContext);
 
-            // создаём MainWindow вручную
             var mainWindow = new MainWindow(unitOfWork);
             mainWindow.Show();
         }

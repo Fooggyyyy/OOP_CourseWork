@@ -56,7 +56,6 @@ namespace OOP_CourseWork.ViewModel
 
             if (Username == "Admin" && Password == "Admin")
             {
-                // Открываем окно администратора
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     var adminWindow = new AdminWindow(_unitOfWork);

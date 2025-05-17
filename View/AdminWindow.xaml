@@ -13,7 +13,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Header -->
         <DockPanel Grid.Row="0" Margin="0 0 0 10">
             <TextBlock Text="Админ-панель магазина" FontSize="24" FontWeight="Bold" FontFamily="Segoe UI" Foreground="#333" />
             <TextBlock Text="{DynamicResource Store}"
@@ -28,7 +27,6 @@
                        PreviewMouseDown="NavigateToMain"/>
         </DockPanel>
 
-        <!-- Content -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -40,7 +38,6 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Товары -->
             <GroupBox Header="Управление товарами" Grid.Row="0" Grid.Column="0" FontWeight="Bold" FontFamily="Segoe UI">
                 <StackPanel Margin="10">
                     <DataGrid x:Name="ItemsDataGrid" 
@@ -56,7 +53,6 @@
                 </StackPanel>
             </GroupBox>
 
-            <!-- Пользователи -->
             <GroupBox Header="Пользователи" Grid.Row="1" Grid.Column="0" FontWeight="Bold" FontFamily="Segoe UI">
                 <StackPanel Margin="10">
                     <DataGrid x:Name="UsersDataGrid" 
@@ -70,7 +66,6 @@
                 </StackPanel>
             </GroupBox>
 
-            <!-- Заказы -->
             <GroupBox Header="Заказы" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Segoe UI">
                 <StackPanel Margin="10">
                     <DataGrid x:Name="OrdersDataGrid"

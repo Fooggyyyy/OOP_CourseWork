@@ -30,7 +30,6 @@ namespace OOP_CourseWork.ViewModel
             _unitOfWork = unitOfWork;
             LoadBonusCommand = CreateAsyncCommand(LoadBonusAsync);
 
-            // Автоматическая загрузка при создании
             LoadBonusAsync();
         }
 
@@ -42,7 +41,7 @@ namespace OOP_CourseWork.ViewModel
             if (user != null)
             {
                 Bonus = user.Bonus;
-                UserName = user.Name; // предполагается, что есть поле Name
+                UserName = user.Name;
             }
         }
     }

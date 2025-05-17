@@ -105,7 +105,6 @@
             </ItemsControl>
         </ScrollViewer>
 
-        <!-- Блок кнопки оплаты слева сверху -->
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,10,20,20">
             <Button Content="Оплата"
             Width="80" Height="40"
@@ -119,7 +118,6 @@
 
 
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <!-- Элемент "Help" -->
             <TextBlock Text="{DynamicResource Help}"
        FontFamily="Almarai"
        HorizontalAlignment="Center"
@@ -145,7 +143,6 @@
                 </TextBlock.LayoutTransform>
             </TextBlock>
 
-            <!-- Элемент "Contacts" -->
             <TextBlock Text="{DynamicResource Contacts}"
        FontFamily="Almarai"
        HorizontalAlignment="Center"
