@@ -49,9 +49,16 @@ namespace OOP_CourseWork
 
         private void NavigateToPayment(object sender, RoutedEventArgs e)
         {
-            var newWindow = new PaymentWindow(_unitOfWork);
-            newWindow.Show();
-            this.Hide();
+            if(_unitOfWork.Carts.GetAll() != null)
+            {
+                var newWindow = new PaymentWindow(_unitOfWork);
+                newWindow.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Корзина пуста");
+            }
         }
 
         private void NavigateToContact(object sender, MouseButtonEventArgs e)

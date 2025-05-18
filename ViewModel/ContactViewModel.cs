@@ -52,6 +52,12 @@ namespace OOP_CourseWork.ViewModel
                 return;
             }
 
+            if (!IsValidEmail(Email))
+            {
+                MessageBox.Show("Пожалуйста, введите корректный email.");
+                return;
+            }
+
             try
             {
                 var contact = new Contact
@@ -73,6 +79,19 @@ namespace OOP_CourseWork.ViewModel
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка при отправке: {ex.Message}");
+            }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:OOP_CourseWork.View"
         xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel"
-        Title="Admin Panel" Height="600" Width="1000"
+        Title="Admin Panel" Height="700" Width="1000"
         MinHeight="600" MinWidth="1000"
         Icon="C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\Recources\tiktok_logo_icon_186896.ico">
 
@@ -59,8 +59,12 @@
                               ItemsSource="{Binding Users}" 
                               SelectedItem="{Binding SelectedUser, Mode=TwoWay}" 
                               Height="180" AutoGenerateColumns="True" />
-                    <Button Content="Удалить пользователя" 
+                    <Button Content="Заблокировать" 
                             Command="{Binding DeleteUser}" 
+                            CommandParameter="{Binding SelectedItem, ElementName=UsersDataGrid}" 
+                            Margin="0,10,0,0" Width="160" HorizontalAlignment="Center"/>
+                    <Button Content="Разблокировать" 
+                            Command="{Binding OnBlockUser1}" 
                             CommandParameter="{Binding SelectedItem, ElementName=UsersDataGrid}" 
                             Margin="0,10,0,0" Width="160" HorizontalAlignment="Center"/>
                 </StackPanel>
@@ -75,9 +79,9 @@
                               Height="360"
                               CanUserAddRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" />
-                            <DataGridTextColumn Header="Пользователь" Binding="{Binding UserId}" Width="*" />
-                            <DataGridTextColumn Header="Товар" Binding="{Binding Item.Name}" Width="*" />
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Пользователь" Binding="{Binding UserId}" Width="*" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Товар" Binding="{Binding Item.Name}" Width="*" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*" />
                         </DataGrid.Columns>
                     </DataGrid>

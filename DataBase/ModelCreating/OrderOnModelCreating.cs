@@ -20,12 +20,12 @@ namespace OOP_CourseWork.DataBase.ModelCreating
             entity.HasOne(e => e.User)
                 .WithMany()
                 .HasForeignKey(e => e.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             entity.HasOne(e => e.Item)
                 .WithMany()
                 .HasForeignKey(e => e.ItemId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             entity.Property(e => e.Status).HasDefaultValue(Status.Processing);
         }

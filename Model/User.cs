@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using System.Windows.Documents;
 
 namespace OOP_CourseWork.Model
 {
@@ -16,6 +17,7 @@ namespace OOP_CourseWork.Model
         public bool IsAdmin { get; set; }
         public string? Password { get; set; }
         public int Bonus { get; set; }
+        public bool Block {  get; set; }
 
         public User()
         {
@@ -27,6 +29,7 @@ namespace OOP_CourseWork.Model
             Password = password;
             Bonus = 0;
             IsAdmin = false;
+            Block = false;
         }
 
         public User(int id, string? name, string? password, bool isAdmin)
@@ -36,6 +39,7 @@ namespace OOP_CourseWork.Model
             IsAdmin = false;
             Password = password;
             Bonus = 0;
+            Block = false;
         }
     }
 }

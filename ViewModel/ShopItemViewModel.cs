@@ -192,6 +192,7 @@ namespace OOP_CourseWork.ViewModel
             if (existing.Any())
             {
                 MessageBox.Show("Этот товар уже в корзине.");
+                return;
             }
 
             var cartItem = new Cart

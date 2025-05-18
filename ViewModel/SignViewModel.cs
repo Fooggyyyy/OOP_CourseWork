@@ -54,6 +54,12 @@ namespace OOP_CourseWork.ViewModel
                 return;
             }
 
+            if (user.Block)
+            {
+                MessageBox.Show("Вы заблокированы");
+                return;
+            }
+
             if (Username == "Admin" && Password == "Admin")
             {
                 Application.Current.Dispatcher.Invoke(() =>

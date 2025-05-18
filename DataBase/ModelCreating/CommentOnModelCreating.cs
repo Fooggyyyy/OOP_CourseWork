@@ -19,7 +19,7 @@ namespace OOP_CourseWork.DataBase.ModelCreating
             entity.HasOne(e => e.User)
                 .WithMany()
                 .HasForeignKey(e => e.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             entity.HasOne(e => e.Item)
                 .WithMany()

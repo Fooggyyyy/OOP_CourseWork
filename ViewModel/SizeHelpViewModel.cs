@@ -58,12 +58,18 @@ namespace OOP_CourseWork.ViewModel
         {
             try
             {
+                if (double.IsNaN(Height) || Height <= 0 || Height > 220)
+                    throw new ArgumentException("Рост должен быть положительным числом не более 220 см.");
+
+                if (double.IsNaN(Weight) || Weight <= 0 || Weight > 200)
+                    throw new ArgumentException("Вес должен быть положительным числом не более 200 кг.");
+
                 var helper = new SizeHelp(Height, Weight);
                 RecommendedSize = helper.DetermineSize();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

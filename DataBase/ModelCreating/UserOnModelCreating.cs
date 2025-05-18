@@ -4,6 +4,7 @@ using OOP_CourseWork.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace OOP_CourseWork.DataBase.ModelCreating
             entity.Property(e => e.Password).HasMaxLength(100);
             entity.Property(e => e.IsAdmin).HasDefaultValue(false);
             entity.Property(e => e.Bonus).HasDefaultValue(0);
+            entity.Property(e => e.Block).HasDefaultValue(false);
         }
     }
 }
