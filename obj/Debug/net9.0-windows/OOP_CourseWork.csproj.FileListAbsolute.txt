@@ -96,3 +96,13 @@ C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-window
 C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\OOP_CourseWork.pdb
 C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\OOP_CourseWork.genruntimeconfig.cache
 C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\ref\OOP_CourseWork.dll
+C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\Recources\Theme\PinkTheme.baml
+C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\Themes\GrayscaleTheme.baml
+C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\Themes\OptimisticTheme.baml
+C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\Recources\Themes\OptimisticTheme.baml
+C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\Recources\Themes\GrayscaleTheme.baml
+C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\View\PersonalAccountView.g.cs
+C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\View\PersonalAccountView.baml
+C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\Recources\ControlTemplates.baml
+C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\obj\Debug\net9.0-windows\Themes\Generic.baml

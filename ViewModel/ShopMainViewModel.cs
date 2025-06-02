@@ -41,7 +41,7 @@ namespace OOP_CourseWork.ViewModel
             set
             {
                 _searchText = value;
-                OnPropertyChanged(); 
+                OnPropertyChanged();
             }
         }
 
@@ -64,7 +64,7 @@ namespace OOP_CourseWork.ViewModel
                 Items.Add(item);
         }
 
-        private async  void OpenItemPage(object parameter)
+        private async void OpenItemPage(object parameter)
         {
             if (parameter is Item item)
             {

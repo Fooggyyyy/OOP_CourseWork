@@ -26,7 +26,25 @@ namespace OOP_CourseWork
 
 
             this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
+
         }
+
+        private void NavigateToPersonalAccount(object sender, MouseButtonEventArgs e)
+        {
+            if (!Model.CurrentUser.CurrentUser.IsLoggedIn)
+            {
+                MessageBox.Show("Пожалуйста, войдите в систему");
+                var signWindow = new SignWindow(_unitOfWork);
+                signWindow.Show();
+                this.Hide();
+                return;
+            }
+
+            var personalAccountWindow = new PersonalAccountView(_unitOfWork);
+            personalAccountWindow.Show();
+            this.Hide();
+        }
+
         private void NavigateToHelp(object sender, MouseButtonEventArgs e)
         {
             var newWindow = new HelpWindow(_unitOfWork);
@@ -133,5 +151,7 @@ namespace OOP_CourseWork
         {
             popup.IsOpen = false;
         }
+
+        
     }
 }

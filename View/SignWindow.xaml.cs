@@ -157,6 +157,8 @@ namespace OOP_CourseWork
             newWindow.Show();
             this.Hide();
         }
+
+
         private void ShopBurgerMenuOpen(object sender, MouseButtonEventArgs e)
         {
             popup.IsOpen = true;

@@ -2,12 +2,35 @@
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:local="clr-namespace:OOP_CourseWork"
-                 xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel;assembly=OOP_CourseWork">
+                 xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel;assembly=OOP_CourseWork"
+                 xmlns:commands="clr-namespace:OOP_CourseWork.Commands">
     <Application.Resources>
-            <ResourceDictionary>
-                <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="Recources/Translate/ru.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Recources/Translate/ru.xaml"/>
+                <ResourceDictionary Source="/Themes/OptimisticTheme.xaml"/>
+                <ResourceDictionary Source="/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            </ResourceDictionary>
-        </Application.Resources>
-    </Application>
+
+            <RoutedUICommand x:Key="UndoCommandWithShortcut" Text="Undo">
+                <RoutedUICommand.InputGestures>
+                    <KeyGesture>Ctrl+Z</KeyGesture>
+                </RoutedUICommand.InputGestures>
+            </RoutedUICommand>
+
+            <RoutedUICommand x:Key="RedoCommandWithShortcut" Text="Redo">
+                <RoutedUICommand.InputGestures>
+                    <KeyGesture>Ctrl+Y</KeyGesture>
+                </RoutedUICommand.InputGestures>
+            </RoutedUICommand>
+            <ControlTemplate x:Key="RoundedTextBoxTemplate" TargetType="TextBoxBase">
+                <Border CornerRadius="10"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}">
+                    <ScrollViewer x:Name="PART_ContentHost"/>
+                </Border>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

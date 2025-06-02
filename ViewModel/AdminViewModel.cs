@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OOP_CourseWork.DataBase.Pattern.UnitOfWork;
 using OOP_CourseWork.Model;
+using OOP_CourseWork.Commands;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -8,6 +9,9 @@ using System.Windows.Input;
 public class AdminViewModel : ViewModelBase
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly CommandHistory _commandHistory;
+    private bool _canUndo;
+    private bool _canRedo;
 
     public ObservableCollection<Item> Items { get; } = new();
     public ObservableCollection<User> Users { get; } = new();
@@ -18,7 +22,9 @@ public class AdminViewModel : ViewModelBase
     public ICommand DeleteUser { get; }
     public ICommand LoadAdminDataCommand { get; }
     public ICommand ChangeOrderStatusCommand { get; }
-    public ICommand OnBlockUser1 {  get; }
+    public ICommand OnBlockUser1 { get; }
+    public ICommand UndoCommand { get; }
+    public ICommand RedoCommand { get; }
 
     private Item _selectedItem;
 
@@ -57,9 +63,43 @@ public class AdminViewModel : ViewModelBase
         }
     }
 
+    public bool CanUndo
+    {
+        get => _canUndo;
+        private set
+        {
+            if (_canUndo != value)
+            {
+                _canUndo = value;
+                OnPropertyChanged(nameof(CanUndo));
+            }
+        }
+    }
+
+    public bool CanRedo
+    {
+        get => _canRedo;
+        private set
+        {
+            if (_canRedo != value)
+            {
+                _canRedo = value;
+                OnPropertyChanged(nameof(CanRedo));
+            }
+        }
+    }
+
+    private void UpdateCommandStates()
+    {
+        CanUndo = _commandHistory.CanUndo;
+        CanRedo = _commandHistory.CanRedo;
+        CommandManager.InvalidateRequerySuggested();
+    }
+
     public AdminViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
+        _commandHistory = new CommandHistory();
 
         LoadAdminDataCommand = CreateAsyncCommand(LoadDataAsync);
         AddItem = CreateAsyncCommand(AddItemAsync);
@@ -69,7 +109,42 @@ public class AdminViewModel : ViewModelBase
         ChangeOrderStatusCommand = CreateAsyncCommand(ChangeOrderStatusAsync);
         OnBlockUser1 = CreateAsyncCommand(OnBlockUser);
 
+        UndoCommand = new RelayCommand(async _ =>
+        {
+            try
+            {
+                if (_commandHistory.CanUndo)
+                {
+                    await _commandHistory.Undo();
+                    await LoadDataAsync();
+                    UpdateCommandStates();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при отмене действия: {ex.Message}");
+            }
+        });
+
+        RedoCommand = new RelayCommand(async _ =>
+        {
+            try
+            {
+                if (_commandHistory.CanRedo)
+                {
+                    await _commandHistory.Redo();
+                    await LoadDataAsync();
+                    UpdateCommandStates();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при повторе действия: {ex.Message}");
+            }
+        });
+
         LoadDataAsync();
+        UpdateCommandStates();
     }
 
     private async Task LoadDataAsync()
@@ -89,6 +164,10 @@ public class AdminViewModel : ViewModelBase
         foreach (var order in orders)
             Orders.Add(order);
 
+        // Обновляем UI
+        OnPropertyChanged(nameof(Items));
+        OnPropertyChanged(nameof(Users));
+        OnPropertyChanged(nameof(Orders));
     }
 
     private async Task AddItemAsync(object parameter)
@@ -124,7 +203,6 @@ public class AdminViewModel : ViewModelBase
             return;
         }
 
-        // Проверка enum-полей (хотя они всегда имеют значение по умолчанию)
         if (!Enum.IsDefined(typeof(OOP_CourseWork.Model.Size), item.Size))
         {
             MessageBox.Show("Указан недопустимый размер");
@@ -145,9 +223,10 @@ public class AdminViewModel : ViewModelBase
 
         try
         {
-            await _unitOfWork.Items.Add(item);
-            await _unitOfWork.CompleteAsync();
-            Items.Add(item);
+            var command = new AddItemCommand(_unitOfWork, item, Items);
+            await _commandHistory.ExecuteCommand(command);
+            await LoadDataAsync();
+            UpdateCommandStates();
             MessageBox.Show("Товар успешно добавлен");
         }
         catch (Exception ex)
@@ -163,9 +242,18 @@ public class AdminViewModel : ViewModelBase
             MessageBox.Show("No item selected");
             return;
         }
-        await _unitOfWork.Items.Remove(item);
-        await _unitOfWork.CompleteAsync();
-        Items.Remove(item);
+
+        try
+        {
+            var command = new DeleteItemCommand(_unitOfWork, item, Items);
+            await _commandHistory.ExecuteCommand(command);
+            await LoadDataAsync();
+            UpdateCommandStates();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Ошибка при удалении товара: {ex.Message}");
+        }
     }
 
     private async Task UpdateItemAsync(object parameter)
@@ -221,8 +309,10 @@ public class AdminViewModel : ViewModelBase
 
         try
         {
-            await _unitOfWork.Items.Update(item);
-            await _unitOfWork.CompleteAsync();
+            var command = new UpdateItemCommand(_unitOfWork, item);
+            await _commandHistory.ExecuteCommand(command);
+            await LoadDataAsync();
+            UpdateCommandStates();
             MessageBox.Show("Товар успешно обновлен");
         }
         catch (Exception ex)
@@ -267,7 +357,7 @@ public class AdminViewModel : ViewModelBase
             _unitOfWork.Users.Update(user); // обновляем пользователя
             await _unitOfWork.CompleteAsync();
 
-            MessageBox.Show("Пользователь успешно заблокирован.");
+            MessageBox.Show("Пользователь успешно разблокирован.");
         }
         catch (Exception ex)
         {
@@ -296,7 +386,6 @@ public class AdminViewModel : ViewModelBase
 
         OnPropertyChanged(nameof(Orders));
     }
-
 }
 
 public static class SizeEnum

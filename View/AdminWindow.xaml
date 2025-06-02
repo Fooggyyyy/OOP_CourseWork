@@ -1,11 +1,19 @@
 ﻿<Window x:Class="OOP_CourseWork.View.AdminWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_CourseWork.View"
         xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel"
+        mc:Ignorable="d"
         Title="Admin Panel" Height="700" Width="1000"
         MinHeight="600" MinWidth="1000"
         Icon="C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\Recources\tiktok_logo_icon_186896.ico">
+
+    <Window.InputBindings>
+        <KeyBinding Key="Z" Modifiers="Control" Command="{Binding UndoCommand}"/>
+        <KeyBinding Key="Y" Modifiers="Control" Command="{Binding RedoCommand}"/>
+    </Window.InputBindings>
 
     <Grid Background="#FAFAFA" Margin="10">
         <Grid.RowDefinitions>
@@ -40,6 +48,22 @@
 
             <GroupBox Header="Управление товарами" Grid.Row="0" Grid.Column="0" FontWeight="Bold" FontFamily="Segoe UI">
                 <StackPanel Margin="10">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Right">
+                        <Button Command="{Binding UndoCommand}" 
+                               IsEnabled="{Binding CanUndo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                               ToolTip="Отменить (Ctrl+Z)" 
+                               Margin="0,0,5,0"
+                               Width="100">
+                            <TextBlock Text="↩ Отменить"/>
+                        </Button>
+                        <Button Command="{Binding RedoCommand}" 
+                               IsEnabled="{Binding CanRedo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                               ToolTip="Повторить (Ctrl+Y)"
+                               Width="100">
+                            <TextBlock Text="↪ Повторить"/>
+                        </Button>
+                    </StackPanel>
+                    
                     <DataGrid x:Name="ItemsDataGrid" 
                               ItemsSource="{Binding Items}" 
                               SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 

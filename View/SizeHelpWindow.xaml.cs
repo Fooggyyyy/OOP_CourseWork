@@ -140,5 +140,9 @@ namespace OOP_CourseWork.View
             this.Hide();
         }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_CourseWork"
         xmlns:viewmodel="clr-namespace:OOP_CourseWork.ViewModel"
+        xmlns:controls="clr-namespace:OOP_CourseWork.Controls"
         Icon="C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\Recources\tiktok_logo_icon_186896.ico"
         mc:Ignorable="d"
         Title="Rix - Детали товара" 
@@ -69,6 +70,13 @@
                 <!-- Product Info -->
                 <TextBlock Text="{Binding SelectedItem.Name}" FontWeight="Bold" FontSize="24" Margin="0,0,0,15"/>
 
+                <TextBlock Text="Рейтинг:" FontWeight="SemiBold" FontSize="16"/>
+                <controls:RatingControl Rating="{Binding SelectedItem.Rating, Mode=OneWay}" 
+                                     MaxRating="5" 
+                                     StarSize="25"
+                                     IsEnabled="False"
+                                     Margin="0,5,0,15"/>
+
                 <TextBlock Text="Описание:" FontWeight="SemiBold" FontSize="16"/>
                 <TextBlock Text="{Binding SelectedItem.Description}" TextWrapping="Wrap" Margin="0,5,0,15" FontSize="14"/>
 
@@ -103,8 +111,11 @@
                                         <StackPanel>
                                             <TextBlock Text="{Binding Description}" TextWrapping="Wrap" FontSize="14"/>
                                             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                                <TextBlock Text="Рейтинг: " FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Rating}"/>
+                                                <TextBlock Text="Рейтинг: " FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                                <controls:RatingControl Rating="{Binding Rating, Mode=OneWay}" 
+                                                                     MaxRating="5" 
+                                                                     StarSize="15"
+                                                                     IsEnabled="False"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </Border>
@@ -121,24 +132,17 @@
                                  AcceptsReturn="True" Height="80" TextWrapping="Wrap"
                                  VerticalScrollBarVisibility="Auto"
                                  Margin="0,0,0,10" FontSize="14"/>
-
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,15">
-                            <TextBlock Text="Рейтинг:" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="14"/>
-                            <ComboBox Width="60" FontSize="14"
-                                      SelectedValue="{Binding NewCommentRating}" 
-                                      SelectedValuePath="Content">
-                                <ComboBoxItem Content="1"/>
-                                <ComboBoxItem Content="2"/>
-                                <ComboBoxItem Content="3"/>
-                                <ComboBoxItem Content="4"/>
-                                <ComboBoxItem Content="5"/>
-                            </ComboBox>
+                        
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="Рейтинг:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <controls:RatingControl Rating="{Binding NewCommentRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                 MaxRating="5" 
+                                                 StarSize="20"/>
                         </StackPanel>
 
-                        <Button Content="Добавить комментарий"
+                        <Button Content="Отправить" 
                                 Command="{Binding AddCommentCommand}"
-                                Width="180" Height="35" HorizontalAlignment="Left"
-                                />
+                                Width="120" Height="30" HorizontalAlignment="Left"/>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>

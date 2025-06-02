@@ -12,7 +12,35 @@
         Title="MainWindow" Height="450" Width="800"
         Closing="Window_Closing">
 
-
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Button.Background" Value="Black" />
+                <Setter Property="Button.Foreground" Value="White" />
+                <Setter Property="Button.FontFamily" Value="Verdana" />
+                <Setter Property="Button.Margin" Value="10" />
+            </Style.Setters>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsPressed" Value="True" />
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="FontSize" Value="40" />
+                        <Setter Property="Foreground" Value="Red" />
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}" Value="1">
+                    <Setter Property="Background" Value="LightPink"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
@@ -91,7 +119,7 @@
                        VerticalAlignment="Center" Margin="0,0,10,10"/>
                     <TextBox Grid.Column="1" Text="{Binding Height, UpdateSourceTrigger=PropertyChanged}"
                      Height="30" Width="200" Padding="5"
-                     FontFamily="Inter" Margin="0,0,0,10"/>
+                     FontFamily="Inter" Margin="0,0,0,10" TextChanged="TextBox_TextChanged"/>
 
                     <!-- Масса -->
                     <TextBlock Text="Масса (кг):"
@@ -105,8 +133,6 @@
                 <!-- Кнопка расчета -->
                 <Button Content="🔍 Рассчитать размер"
                 Command="{Binding RecommendSizeCommand}"
-                Height="35" Width="200"
-                Background="#2196F3" Foreground="White"
                 FontWeight="Bold" FontFamily="Inter"
                 HorizontalAlignment="Left"
                 BorderThickness="0" Cursor="Hand"

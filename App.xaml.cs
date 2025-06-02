@@ -66,6 +66,25 @@ namespace OOP_CourseWork
             var mainWindow = new MainWindow(unitOfWork);
             mainWindow.Show();
         }
+
+        public static void ChangeTheme(string themeName)
+        {
+            ResourceDictionary newTheme = new ResourceDictionary();
+
+            switch (themeName)
+            {
+                case "Pink":
+                    newTheme.Source = new Uri("Recources/Theme/PinkTheme.xaml", UriKind.Relative);
+                    break;
+                case "Dark":
+                    newTheme.Source = new Uri("Recources/Theme/OptimisticTheme.xaml", UriKind.Relative);
+                    break;
+            }
+
+
+            Current.Resources.MergedDictionaries.Clear();
+            Current.Resources.MergedDictionaries.Add(newTheme);
+        }
     }
 
 }

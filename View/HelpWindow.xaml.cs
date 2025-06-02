@@ -28,7 +28,12 @@ namespace OOP_CourseWork
             InitializeComponent();
             _unitOfWork = unitOfWork;
 
+            this.Resources.MergedDictionaries.Add(
+                new ResourceDictionary() { Source = new Uri("pack://application:,,,/Recources/Style.xaml") }
+            );
+
             this.Cursor = new Cursor("C:\\Users\\user\\source\\repos\\OOP_CourseWork\\OOP_CourseWork\\Recources\\BUSY.cur");
+
         }
 
         private void NavigateToShopMainWindow(object sender, MouseButtonEventArgs e)
