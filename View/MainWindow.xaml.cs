@@ -29,6 +29,14 @@ namespace OOP_CourseWork
 
         }
 
+
+        private void NavigateToAdminAdo(object sender, RoutedEventArgs e)
+        {
+            var adminWindow = new View.AdminAdoView();
+            adminWindow.Show();
+            this.Hide();
+        }
+
         private void NavigateToPersonalAccount(object sender, MouseButtonEventArgs e)
         {
             if (!Model.CurrentUser.CurrentUser.IsLoggedIn)

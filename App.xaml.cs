@@ -8,6 +8,7 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Windows;
+using OOP_CourseWork.DataBase.ADO;
 
 namespace OOP_CourseWork
 {
@@ -62,6 +63,16 @@ namespace OOP_CourseWork
 
             var dbContext = new OOP_CourseWork.DataBase.AppContext(optionsBuilder.Options);
             var unitOfWork = new UnitOfWork(dbContext);
+
+            // Initialize ADO.NET database
+            try
+            {
+                DatabaseInitializer.Initialize();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to initialize ADO.NET database: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             var mainWindow = new MainWindow(unitOfWork);
             mainWindow.Show();

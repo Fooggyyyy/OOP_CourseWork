@@ -1,4 +1,5 @@
-﻿<Window x:Class="OOP_CourseWork.MainWindow"
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="OOP_CourseWork.MainWindow"
                 MinWidth="1000" MinHeight="430"
         MaxWidth="1000" MaxHeight="600"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -73,6 +74,41 @@
                 </Style>
             </Label.Style>
         </Label>
+
+
+        <Button x:Name="AdminAdoButton"
+                Content="Admin ADO.NET Panel"
+                Click="NavigateToAdminAdo"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="101"
+                Height="90"
+                Background="#2196F3"
+                Foreground="White"
+                FontSize="14"
+                FontFamily="Segoe UI" Margin="0,37,0,0" Grid.Row="1">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderThickness="0"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                    VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#1976D2"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <!-- Элемент "Help" -->
@@ -214,7 +250,7 @@ MouseLeftButtonUp="NavigateToCart">
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                 </TextBlock.LayoutTransform>
             </TextBlock>
-            
+
             <TextBlock Text="{DynamicResource Store}"
                        x:Name="shop"
   FontFamily="Almarai"
@@ -248,4 +284,4 @@ MouseLeftButtonUp="NavigateToCart">
             <ComboBoxItem Tag="ru" Content="Русский"/>
         </ComboBox>
     </Grid>
-</Window>
+</Window> 

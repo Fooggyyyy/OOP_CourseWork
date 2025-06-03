@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET9_0;NETCOREAPP
 C:\Users\user\source\repos\OOP_CourseWork\OOP_CourseWork\App.xaml
-28-1309956850
+30-1877062568
 
-741217978083
-2302002529023
-Recources\ControlTemplates.xaml;Recources\Style.xaml;Recources\Themes\GrayscaleTheme.xaml;Recources\Themes\OptimisticTheme.xaml;Recources\Theme\PinkTheme.xaml;Recources\Translate\en.xaml;Recources\Translate\ru.xaml;Themes\Generic.xaml;Themes\GrayscaleTheme.xaml;Themes\OptimisticTheme.xaml;View\ActivePlaceWindow.xaml;View\AdminWindow.xaml;View\BonusWindow.xaml;View\CartWindow.xaml;View\ContactWindow.xaml;View\FavoriteWindow.xaml;View\HelpWindow.xaml;View\HistoryWindow.xaml;View\LastViewWindow.xaml;View\MainWindow.xaml;View\OrdersWindow.xaml;View\PaymentWindow.xaml;View\PersonalAccountView.xaml;View\RegisterWindow.xaml;View\ShopItemWindow.xaml;View\ShopMainWindow.xaml;View\SignWindow.xaml;View\SizeHelpWindow.xaml;
+84-1179661569
+231-1900650312
+Recources\ControlTemplates.xaml;Recources\Style.xaml;Recources\Themes\GrayscaleTheme.xaml;Recources\Themes\OptimisticTheme.xaml;Recources\Theme\PinkTheme.xaml;Recources\Translate\en.xaml;Recources\Translate\ru.xaml;Themes\Generic.xaml;Themes\GrayscaleTheme.xaml;Themes\OptimisticTheme.xaml;View\ActivePlaceWindow.xaml;View\AdminAdoView.xaml;View\AdminWindow.xaml;View\BonusWindow.xaml;View\CartWindow.xaml;View\ContactWindow.xaml;View\FavoriteWindow.xaml;View\HelpWindow.xaml;View\HistoryWindow.xaml;View\LastViewWindow.xaml;View\MainWindow.xaml;View\OrdersWindow.xaml;View\PaymentWindow.xaml;View\PersonalAccountView.xaml;View\ProductDialog.xaml;View\RegisterWindow.xaml;View\ShopItemWindow.xaml;View\ShopMainWindow.xaml;View\SignWindow.xaml;View\SizeHelpWindow.xaml;
 
 False
 
